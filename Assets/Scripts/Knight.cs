@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class Knight : MonoBehaviour {
@@ -69,5 +70,19 @@ public class Knight : MonoBehaviour {
         } else if (WalkDirection == WalkableDirection.Left) {
             WalkDirection = WalkableDirection.Right;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("PlayerHitbox")) {
+            animator.SetBool(AnimationStrings.isKnightHit, true);
+            walkSpeed = 0;
+            StartCoroutine(ExitStatus());
+        }
+    }
+
+    private IEnumerator ExitStatus() {
+        yield return new WaitForSeconds(1);
+        animator.SetBool(AnimationStrings.isKnightHit, false);
+        walkSpeed = 3;
     }
 }

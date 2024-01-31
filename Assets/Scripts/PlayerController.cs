@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public float jumpImpulse;
     Vector2 moveInput;
     TouchingDirections touchingDirections;
+    public bool isFlip = true;
     public float CurrentMoveSpeed {
         get {
             if (CanMove) {
@@ -89,15 +90,17 @@ public class PlayerController : MonoBehaviour {
             if (moveInput.x != 0) {
                 IsMoving = true;
             } else IsMoving = false;
-            SetFacingDirecTion(moveInput);
+            if (isFlip) SetFacingDirecTion(moveInput);
         } else IsMoving = false;
     }
 
     private void SetFacingDirecTion(Vector2 moveInput) {
         if (moveInput.x > 0 && !IsFacingRight) {
             IsFacingRight = true;
+            transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
         } else if (moveInput.x < 0 && IsFacingRight) {
             IsFacingRight = false;
+            transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
         }
     }
 
@@ -115,10 +118,46 @@ public class PlayerController : MonoBehaviour {
             rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
         }
     }
+    
+    public void OnFire(InputAction.CallbackContext context) {
+        if (context.started) {
+            animator.SetBool(AnimationStrings.isFire,true);
+        } else if (context.canceled) {
+            animator.SetBool(AnimationStrings.isFire, false);
+        }
+    }
 
     public void OnAttack(InputAction.CallbackContext context) {
         if (context.started) {
-            animator.SetTrigger(AnimationStrings.attackTrigger);
+            animator.SetBool(AnimationStrings.isAttack, true);
+            runSpeed = 0;
+            walkSpeed = 0;
+            jumpImpulse = 0;
+        } else if (context.canceled) {
+            animator.SetBool(AnimationStrings.isAttack, false);
+            runSpeed = 7;
+            walkSpeed = 3;
+            jumpImpulse = 6;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("KnightSword")) {
+            animator.SetBool(AnimationStrings.isHit, true);
+            runSpeed = 0;
+            walkSpeed = 0;
+            jumpImpulse = 0;
+            isFlip = false;
+        }
+        StartCoroutine(ExitStatus());
+    }
+
+    private IEnumerator ExitStatus() {
+        yield return new WaitForSeconds(1f);
+        animator.SetBool(AnimationStrings.isHit, false);
+        runSpeed = 7;
+        walkSpeed = 3;
+        jumpImpulse = 6;
+        isFlip = true;
     }
 }

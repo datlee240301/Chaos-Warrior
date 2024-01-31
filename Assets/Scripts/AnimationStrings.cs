@@ -14,4 +14,8 @@ internal class AnimationStrings {
     internal static string canMove = "canMove";
     internal static string hasTarget = "hasTarget";
     internal static string isAlive = "isAlive";
+    internal static string isHit = "isHit";
+    internal static string isKnightHit = "isKnightHit";
+    internal static string isAttack = "isAttack"; 
+    internal static string isFire = "isFire";
 }
