@@ -123,23 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &4597158 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8008088210180164744, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
-  m_PrefabInstance: {fileID: 662082609566901056}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4597166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4597158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6439cc7a677d5274697b785dd4204e32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &19629645
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +418,7 @@ GameObject:
   - component: {fileID: 474551824}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -883,7 +866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 889151137}
   - component: {fileID: 889151138}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: SwordAttack
   m_TagString: PlayerHitbox
   m_Icon: {fileID: 0}
@@ -1654,11 +1637,21 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -16, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 9
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -3, y: -2, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 7
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1684,11 +1677,21 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -16, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 9
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -3, y: -1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 7
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1718,7 +1721,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 7
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1802,6 +1805,10 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 5dba6feffc76ef44e8bc938586f1fa4c, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 678f220391940fc4c845ad0efa86de95, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: 55d318dd503639e42bdaa3a4f7ccf03d, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 10
     m_Data: {fileID: -726465085, guid: fda2c618b779d5e47892b3baa17f9aaf, type: 3}
@@ -1809,10 +1816,12 @@ Tilemap:
     m_Data: {fileID: 1189932957, guid: fda2c618b779d5e47892b3baa17f9aaf, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: -2005933651, guid: fda2c618b779d5e47892b3baa17f9aaf, type: 3}
+  - m_RefCount: 2
+    m_Data: {fileID: 182898174, guid: fda2c618b779d5e47892b3baa17f9aaf, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: -795695062, guid: fda2c618b779d5e47892b3baa17f9aaf, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 69
+  - m_RefCount: 71
     m_Data:
       e00: 1
       e01: 0
@@ -1831,7 +1840,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 69
+  - m_RefCount: 71
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -2009,7 +2018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 2535656842549878111, guid: 354a62c2b1b8e7046ab5c2116fd4a0e9, type: 3}
   shootingPoint: {fileID: 1592285843}
-  speed: 10
+  speed: 30
 --- !u!1 &2034151107
 GameObject:
   m_ObjectHideFlags: 3
@@ -2211,12 +2220,24 @@ PrefabInstance:
       value: 3.5785255
       objectReference: {fileID: 0}
     - target: {fileID: 1457663291508823280, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457663291508823280, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
       propertyPath: m_Offset.x
       value: 0.511816
       objectReference: {fileID: 0}
+    - target: {fileID: 4519117367327174344, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907101467345841800, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7058763638419035068, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.54
+      value: -13.48
       objectReference: {fileID: 0}
     - target: {fileID: 7058763638419035068, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2254,13 +2275,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7598210242609608317, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8008088210180164744, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
       propertyPath: m_Name
       value: KnightEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 8008088210180164744, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008088210180164744, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8169878209890115623, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
       propertyPath: m_Layer
@@ -2270,13 +2299,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: KnightSword
       objectReference: {fileID: 0}
+    - target: {fileID: 9102283423103890519, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8008088210180164744, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4597166}
     - targetCorrespondingSourceObject: {fileID: 8169878209890115623, guid: 1e21f5c7b0d01f947ba9959758d48d34, type: 3}
       insertIndex: -1
       addedObject: {fileID: 667023066}
@@ -2371,6 +2401,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5216251536100179318, guid: 8ac182ded7af049448dd43dfc47e7140, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216251536100179318, guid: 8ac182ded7af049448dd43dfc47e7140, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5414845587402349760, guid: 8ac182ded7af049448dd43dfc47e7140, type: 3}

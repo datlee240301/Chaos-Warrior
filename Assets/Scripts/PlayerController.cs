@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     public float runSpeed;
     public float airWalkSpeed;
     public float jumpImpulse;
+    private float pushForce = 4f;
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     public bool isFlip = true;
@@ -82,6 +83,29 @@ public class PlayerController : MonoBehaviour {
     private void FixedUpdate() {
         rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
         animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
+        if (Input.GetKey(KeyCode.C)) {
+            if (!touchingDirections.IsGrounded && touchingDirections.IsOnWall) {
+                animator.SetBool(AnimationStrings.isClimb, true);
+                StartCoroutine(ExitClimb());
+            }
+        } 
+        //else if (Input.GetMouseButtonDown(0)) {
+        //    animator.SetBool(AnimationStrings.isAttack, true);
+        //    StartCoroutine (ExitAttack());
+        //}
+    }
+
+    private IEnumerator ExitClimb() {
+        yield return new WaitForSeconds(.3f);
+        animator.SetBool(AnimationStrings.isClimb, false);
+    }
+
+    private IEnumerator ExitAttack() {
+        yield return new WaitForSeconds(.15f);
+        animator.SetBool(AnimationStrings.isAttack, false);
+        runSpeed = 7;
+        walkSpeed = 3;
+        jumpImpulse = 6;
     }
 
     public void OnMove(InputAction.CallbackContext context) {
@@ -90,7 +114,8 @@ public class PlayerController : MonoBehaviour {
             if (moveInput.x != 0) {
                 IsMoving = true;
             } else IsMoving = false;
-            if (isFlip) SetFacingDirecTion(moveInput);
+            if (isFlip)
+                SetFacingDirecTion(moveInput);
         } else IsMoving = false;
     }
 
@@ -118,12 +143,18 @@ public class PlayerController : MonoBehaviour {
             rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
         }
     }
-    
+
     public void OnFire(InputAction.CallbackContext context) {
         if (context.started) {
-            animator.SetBool(AnimationStrings.isFire,true);
+            animator.SetBool(AnimationStrings.isFire, true);
+            runSpeed = 0;
+            walkSpeed = 0;
+            jumpImpulse = 0;
         } else if (context.canceled) {
             animator.SetBool(AnimationStrings.isFire, false);
+            runSpeed = 7;
+            walkSpeed = 3;
+            jumpImpulse = 6;
         }
     }
 
@@ -134,10 +165,7 @@ public class PlayerController : MonoBehaviour {
             walkSpeed = 0;
             jumpImpulse = 0;
         } else if (context.canceled) {
-            animator.SetBool(AnimationStrings.isAttack, false);
-            runSpeed = 7;
-            walkSpeed = 3;
-            jumpImpulse = 6;
+            StartCoroutine(ExitAttack());
         }
     }
 
@@ -148,6 +176,9 @@ public class PlayerController : MonoBehaviour {
             walkSpeed = 0;
             jumpImpulse = 0;
             isFlip = false;
+            Vector2 pushDirection = collision.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+            pushDirection.y = .75f;
+            rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
         }
         StartCoroutine(ExitStatus());
     }
@@ -159,5 +190,10 @@ public class PlayerController : MonoBehaviour {
         walkSpeed = 3;
         jumpImpulse = 6;
         isFlip = true;
+    }
+    private void FinishClimb() {
+        if (transform.localScale.x > 0)
+            transform.position = new Vector2(transform.position.x + 1.5f, transform.position.y + 0.8f);
+        else if (transform.localScale.x < 0) transform.position = new Vector2(transform.position.x - 1.5f, transform.position.y + 1f);
     }
 }

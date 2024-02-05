@@ -6,10 +6,13 @@ public class PlayerShoot : MonoBehaviour
     public static PlayerShoot instance;
     public GameObject arrowPrefab;
     public Transform shootingPoint;
-    public float speed = 10f;
+    public float speed = 1000f;
 
     private void Awake() {
         instance = this;
+    }
+    private void Update() {
+        
     }
 
     public IEnumerator Shoot() {

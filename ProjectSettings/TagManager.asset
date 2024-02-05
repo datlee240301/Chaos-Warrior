@@ -7,6 +7,9 @@ TagManager:
   - New tag
   - KnightSword
   - PlayerHitbox
+  - Enemy
+  - Arrow
+  - Ground
   layers:
   - Default
   - TransparentFX

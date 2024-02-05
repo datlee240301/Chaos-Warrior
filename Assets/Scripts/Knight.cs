@@ -1,12 +1,16 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class Knight : MonoBehaviour {
+    public static Knight Instance;
+    private int hitCount;
+    private int hitShotCount;
+    private float pushForce = 4f;
     public float walkSpeed = 3f;
     public DetectionZone attackZone;
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
-    Animator animator;
+    public Animator animator;
     public enum WalkableDirection { Right, Left }
     private WalkableDirection _walkDirection;
     private Vector2 walkDirectionVector = Vector2.right;
@@ -34,10 +38,10 @@ public class Knight : MonoBehaviour {
             animator.SetBool(AnimationStrings.hasTarget, value);
         }
     }
-    
+
     public bool CanMove {
-        get { 
-            return animator.GetBool(AnimationStrings.canMove); 
+        get {
+            return animator.GetBool(AnimationStrings.canMove);
         }
         //private set {
         //    _hasTarget = value;
@@ -48,7 +52,8 @@ public class Knight : MonoBehaviour {
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
-        animator = GetComponent<Animator>();    
+        animator = GetComponent<Animator>();
+        Instance = this;
     }
 
     private void Update() {
@@ -59,9 +64,11 @@ public class Knight : MonoBehaviour {
         if (touchingDirections.IsGrounded && touchingDirections.IsOnWall) {
             FlipDirection();
         }
-        if(CanMove)
-        rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
-        else rb.velocity = new Vector2(0,rb.velocity.y);
+        if (CanMove) {
+            Vector3 newPosition = transform.position + new Vector3(walkSpeed * walkDirectionVector.x * Time.fixedDeltaTime, 0, 0);
+            transform.position = newPosition;
+        }
+        //else rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
     private void FlipDirection() {
@@ -77,10 +84,24 @@ public class Knight : MonoBehaviour {
             animator.SetBool(AnimationStrings.isKnightHit, true);
             walkSpeed = 0;
             StartCoroutine(ExitStatus());
+            hitCount++;
+            Vector2 pushDirection = collision.transform.localScale.x >0 ? Vector2.right : Vector2.left;
+            rb.AddForce(pushDirection *pushForce, ForceMode2D.Impulse);
+            if (hitCount > 4) {
+                animator.SetBool(AnimationStrings.isDeath, true);
+            }
+        } else if (collision.gameObject.CompareTag("Arrow")) {
+            hitShotCount++;
+            walkSpeed = 0;
+            if (hitShotCount > 4) {
+                animator.SetBool(AnimationStrings.isDeath, true);
+                animator.SetBool(AnimationStrings.canMove, false);
+                Destroy(gameObject, 1f);
+            }
         }
     }
 
-    private IEnumerator ExitStatus() {
+    public IEnumerator ExitStatus() {
         yield return new WaitForSeconds(1);
         animator.SetBool(AnimationStrings.isKnightHit, false);
         walkSpeed = 3;
