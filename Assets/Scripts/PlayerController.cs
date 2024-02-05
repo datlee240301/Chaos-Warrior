@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour {
                 animator.SetBool(AnimationStrings.isClimb, true);
                 StartCoroutine(ExitClimb());
             }
-        } 
+        }
         //else if (Input.GetMouseButtonDown(0)) {
         //    animator.SetBool(AnimationStrings.isAttack, true);
         //    StartCoroutine (ExitAttack());
@@ -145,13 +145,19 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnFire(InputAction.CallbackContext context) {
-        if (context.started) {
+        if (context.started && touchingDirections.IsGrounded) {
             animator.SetBool(AnimationStrings.isFire, true);
+            runSpeed = 0;
+            walkSpeed = 0;
+            jumpImpulse = 0;
+        } else if (context.started && !touchingDirections.IsGrounded) {
+            animator.SetBool(AnimationStrings.isAirFire, true);
             runSpeed = 0;
             walkSpeed = 0;
             jumpImpulse = 0;
         } else if (context.canceled) {
             animator.SetBool(AnimationStrings.isFire, false);
+            animator.SetBool(AnimationStrings.isAirFire, false);
             runSpeed = 7;
             walkSpeed = 3;
             jumpImpulse = 6;

@@ -88,6 +88,7 @@ public class Knight : MonoBehaviour {
             Vector2 pushDirection = collision.transform.localScale.x >0 ? Vector2.right : Vector2.left;
             rb.AddForce(pushDirection *pushForce, ForceMode2D.Impulse);
             if (hitCount > 4) {
+                Destroy(gameObject,1);
                 animator.SetBool(AnimationStrings.isDeath, true);
             }
         } else if (collision.gameObject.CompareTag("Arrow")) {
