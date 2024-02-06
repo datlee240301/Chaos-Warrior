@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8236535886388876162}
   - component: {fileID: 3995816772440389183}
   m_Layer: 0
-  m_Name: Lightning
+  m_Name: ArrowEplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

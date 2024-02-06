@@ -88,6 +88,15 @@ public class PlayerController : MonoBehaviour {
                 animator.SetBool(AnimationStrings.isClimb, true);
                 StartCoroutine(ExitClimb());
             }
+        } else if (Input.GetKey(KeyCode.V)) {
+            if (touchingDirections.IsGrounded && PlayerEnergyBar.instance.slider.value>=200) {
+                PlayerEnergyBar.instance.slider.value -= 200;
+                animator.SetBool(AnimationStrings.isKick, true);
+                runSpeed = 0;
+                walkSpeed = 0;
+                jumpImpulse = 0;
+                isFlip = false;  
+            }
         }
         //else if (Input.GetMouseButtonDown(0)) {
         //    animator.SetBool(AnimationStrings.isAttack, true);
@@ -100,8 +109,21 @@ public class PlayerController : MonoBehaviour {
         animator.SetBool(AnimationStrings.isClimb, false);
     }
 
-    private IEnumerator ExitAttack() {
-        yield return new WaitForSeconds(.15f);
+    private void ExitKick() {
+        animator.SetBool(AnimationStrings.isKick, false);
+        runSpeed = 7;
+        walkSpeed = 3;
+        jumpImpulse = 6;
+        if (transform.localScale.x > 0) {
+            transform.position = new Vector2(transform.position.x + 1.5f, transform.position.y);
+            isFlip = true;
+        } else {
+            transform.position = new Vector2(transform.position.x - 1.5f, transform.position.y);
+            isFlip = true;
+        }
+    }
+
+    private void ExitAttack() {
         animator.SetBool(AnimationStrings.isAttack, false);
         runSpeed = 7;
         walkSpeed = 3;
@@ -170,9 +192,10 @@ public class PlayerController : MonoBehaviour {
             runSpeed = 0;
             walkSpeed = 0;
             jumpImpulse = 0;
-        } else if (context.canceled) {
-            StartCoroutine(ExitAttack());
         }
+        //else if (context.canceled) {
+        //    ExitAttack();
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

@@ -58,6 +58,11 @@ public class Knight : MonoBehaviour {
 
     private void Update() {
         Hastarget = attackZone.detectedColliders.Count > 0;
+        if (EnenmyHealthBar.instance.slider.value <= 0) {
+            Debug.Log(EnenmyHealthBar.instance.slider.value);
+            Destroy(gameObject, 1);
+            animator.SetBool(AnimationStrings.isDeath, true);
+        }
     }
 
     private void FixedUpdate() {
@@ -84,21 +89,15 @@ public class Knight : MonoBehaviour {
             animator.SetBool(AnimationStrings.isKnightHit, true);
             walkSpeed = 0;
             StartCoroutine(ExitStatus());
-            hitCount++;
-            Vector2 pushDirection = collision.transform.localScale.x >0 ? Vector2.right : Vector2.left;
-            rb.AddForce(pushDirection *pushForce, ForceMode2D.Impulse);
-            if (hitCount > 4) {
-                Destroy(gameObject,1);
-                animator.SetBool(AnimationStrings.isDeath, true);
-            }
+            Vector2 pushDirection = collision.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+            rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+            EnenmyHealthBar.instance.slider.value -= 200;
         } else if (collision.gameObject.CompareTag("Arrow")) {
-            hitShotCount++;
+            EnenmyHealthBar.instance.slider.value -= 200;
             walkSpeed = 0;
-            if (hitShotCount > 4) {
-                animator.SetBool(AnimationStrings.isDeath, true);
-                animator.SetBool(AnimationStrings.canMove, false);
-                Destroy(gameObject, 1f);
-            }
+        } else if (collision.gameObject.CompareTag("Skill1Effect")) {
+            walkSpeed = 0;
+            EnenmyHealthBar.instance.slider.value -= EnenmyHealthBar.instance.slider.maxValue;
         }
     }
 

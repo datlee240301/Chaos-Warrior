@@ -21,4 +21,5 @@ internal class AnimationStrings {
     internal static string isAirFire = "isAirFire";
     internal static string isDeath = "isDeath";
     internal static string isClimb = "isClimb";
+    internal static string isKick = "isKick";
 }

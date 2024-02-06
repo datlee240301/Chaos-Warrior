@@ -10,6 +10,8 @@ TagManager:
   - Enemy
   - Arrow
   - Ground
+  - Skill1
+  - Skill1Effect
   layers:
   - Default
   - TransparentFX

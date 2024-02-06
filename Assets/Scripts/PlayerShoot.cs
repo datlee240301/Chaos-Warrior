@@ -6,7 +6,10 @@ public class PlayerShoot : MonoBehaviour
     public static PlayerShoot instance;
     public GameObject arrowPrefab;
     public Transform shootingPoint;
-    public float speed = 1000f;
+    public GameObject skill1Effect;
+    public Transform skill1EffectPos1,skill1EffectPos2,skill1EffectPos3;
+    public GameObject prepareSkill1Effect;
+    public float speed;
 
     private void Awake() {
         instance = this;
@@ -23,5 +26,21 @@ public class PlayerShoot : MonoBehaviour
         arroRb.velocity = new Vector2(speed * arrow.transform.localScale.x, arrow.transform.localScale.y);
         yield return new WaitForSeconds(2);
         Destroy(arrow);
+    }
+
+    public IEnumerator SpawnSkil1Effect() {
+        GameObject skill11 = Instantiate(skill1Effect, skill1EffectPos1.position, skill1EffectPos1.rotation);
+        GameObject skill12 = Instantiate(skill1Effect, skill1EffectPos2.position, skill1EffectPos2.rotation);
+        GameObject skill13 = Instantiate(skill1Effect, skill1EffectPos3.position, skill1EffectPos3.rotation);
+        yield return new WaitForSeconds(0.65f);
+        Destroy(skill11);
+        Destroy(skill12);
+        Destroy(skill13);
+    }
+
+    public IEnumerator SpawnPrepareSkill1() {
+        GameObject skill11 = Instantiate(prepareSkill1Effect, transform.position, transform.rotation);
+        yield return new WaitForSeconds(0.45f);
+        Destroy(skill11);
     }
 }

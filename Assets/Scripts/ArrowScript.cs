@@ -3,7 +3,6 @@ using UnityEngine;
 public class ArrowScript : MonoBehaviour {
     public float pushForce;
     private Rigidbody2D rb;
-    public float speed;
     public GameObject ligghtningEffect;
     public Transform spawnPoint;
     private void Awake() {
