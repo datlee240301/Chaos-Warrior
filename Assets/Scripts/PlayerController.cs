@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class PlayerController : MonoBehaviour {
+    private Collider2D playerCollider;
     public float walkSpeed;
     public float runSpeed;
     public float airWalkSpeed;
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
+        playerCollider = GetComponent<Collider2D>();
     }
 
     private void FixedUpdate() {
@@ -89,13 +91,13 @@ public class PlayerController : MonoBehaviour {
                 StartCoroutine(ExitClimb());
             }
         } else if (Input.GetKey(KeyCode.V)) {
-            if (touchingDirections.IsGrounded && PlayerEnergyBar.instance.slider.value>=200) {
+            if (touchingDirections.IsGrounded && PlayerEnergyBar.instance.slider.value >= 200) {
                 PlayerEnergyBar.instance.slider.value -= 200;
                 animator.SetBool(AnimationStrings.isKick, true);
                 runSpeed = 0;
                 walkSpeed = 0;
                 jumpImpulse = 0;
-                isFlip = false;  
+                isFlip = false;
             }
         }
         //else if (Input.GetMouseButtonDown(0)) {
@@ -224,5 +226,17 @@ public class PlayerController : MonoBehaviour {
         if (transform.localScale.x > 0)
             transform.position = new Vector2(transform.position.x + 1.5f, transform.position.y + 0.8f);
         else if (transform.localScale.x < 0) transform.position = new Vector2(transform.position.x - 1.5f, transform.position.y + 1f);
+    }
+
+    public void EnableCollider() {
+        
+    }
+
+    public IEnumerator DisableCollider() {
+        playerCollider.enabled = false;
+        rb.gravityScale = 0;
+        yield return new WaitForSeconds (1.65f);
+        playerCollider.enabled = true;
+        rb.gravityScale = 1;
     }
 }
