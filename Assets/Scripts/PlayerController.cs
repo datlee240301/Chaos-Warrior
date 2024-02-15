@@ -233,10 +233,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     public IEnumerator DisableCollider() {
-        playerCollider.enabled = false;
+        //playerCollider.enabled = false;
         rb.gravityScale = 0;
         yield return new WaitForSeconds (1.65f);
-        playerCollider.enabled = true;
+        //playerCollider.enabled = true;
         rb.gravityScale = 1;
     }
 }

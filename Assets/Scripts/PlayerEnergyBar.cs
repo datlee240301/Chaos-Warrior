@@ -5,7 +5,7 @@ public class PlayerEnergyBar : MonoBehaviour {
     public static PlayerEnergyBar instance;
     public Slider slider;
     private float elapsedTime = 0f;
-    private float timeInterval = 3f;
+    private float timeInterval = 1f;
     private float increaseAmount = 100f;
 
     private void Awake() {
@@ -14,7 +14,6 @@ public class PlayerEnergyBar : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         slider = GetComponent<Slider>();
-        slider.value = 1000;
         slider.maxValue = 1000;
     }
 

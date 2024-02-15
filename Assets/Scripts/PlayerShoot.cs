@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
@@ -10,7 +10,7 @@ public class PlayerShoot : MonoBehaviour
     public Transform skill1EffectPos1,skill1EffectPos2,skill1EffectPos3;
     public GameObject prepareSkill1Effect;
     public float speed;
-
+    public float lightningSpeed = 100f;
     private void Awake() {
         instance = this;
     }
@@ -29,15 +29,17 @@ public class PlayerShoot : MonoBehaviour
     }
 
     public IEnumerator SpawnSkil1Effect() {
+
         GameObject skill11 = Instantiate(skill1Effect, skill1EffectPos1.position, skill1EffectPos1.rotation);
         GameObject skill12 = Instantiate(skill1Effect, skill1EffectPos2.position, skill1EffectPos2.rotation);
         GameObject skill13 = Instantiate(skill1Effect, skill1EffectPos3.position, skill1EffectPos3.rotation);
+
+        
         yield return new WaitForSeconds(0.65f);
         Destroy(skill11);
         Destroy(skill12);
         Destroy(skill13);
     }
-
     public IEnumerator SpawnPrepareSkill1() {
         GameObject skill11 = Instantiate(prepareSkill1Effect, transform.position, transform.rotation);
         yield return new WaitForSeconds(0.45f);
