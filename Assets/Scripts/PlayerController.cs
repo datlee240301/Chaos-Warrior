@@ -103,6 +103,7 @@ public class PlayerController : MonoBehaviour {
                 isFlip = false;
                 // Đặt lại thời gian đếm ngược
                 timeSinceLastVPressed = 0f;
+                Skill1.Instance.slider.value = Skill1.Instance.slider.maxValue;  
             }
         }
         else if(PlayerHealthBar.instance.slider.value <= 0) animator.SetBool(AnimationStrings.isAlive, false);    
