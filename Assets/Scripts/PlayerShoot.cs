@@ -10,7 +10,6 @@ public class PlayerShoot : MonoBehaviour
     public Transform skill1EffectPos1,skill1EffectPos2,skill1EffectPos3;
     public GameObject prepareSkill1Effect;
     public float speed;
-    public float lightningSpeed = 100f;
     private void Awake() {
         instance = this;
     }

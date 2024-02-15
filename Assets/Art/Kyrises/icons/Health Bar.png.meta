@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 93ca3150ae7f30643ac61ee3e78d1582
+guid: 90e1ab395c2d9324b8e05bf2ce71ee91
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.4879084, y: 0.037930176}
-  spritePixelsToUnits: 70
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,18 +121,106 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "t\u1EA3i xu\u1ED1ng_0"
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 96
+        width: 73
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 684643d8ab0a87246b2e8436e2b86fb6
+      internalID: 2004818948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "t\u1EA3i xu\u1ED1ng_1"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 74
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc0ecb3423faf6142929c81184075617
+      internalID: -1080518265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "t\u1EA3i xu\u1ED1ng_2"
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 110
+        width: 196
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2341781d4a639774e946d9c39b50d6d5
+      internalID: 500982161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "t\u1EA3i xu\u1ED1ng_3"
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 17
+        width: 196
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e0ed0bd059366245b6aac6265d412ca
+      internalID: 409309565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "t\u1EA3i xu\u1ED1ng_0": 2004818948
+      "t\u1EA3i xu\u1ED1ng_1": -1080518265
+      "t\u1EA3i xu\u1ED1ng_2": 500982161
+      "t\u1EA3i xu\u1ED1ng_3": 409309565
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

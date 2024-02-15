@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     public bool isFlip = true;
+    private float timeSinceLastVPressed = 0f;
+    private float cooldownDuration = 5f; // Thời gian chờ giữa các lần ấn V
     public float CurrentMoveSpeed {
         get {
             if (CanMove) {
@@ -83,6 +85,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        timeSinceLastVPressed += Time.deltaTime;
         rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
         animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
         if (Input.GetKey(KeyCode.C)) {
@@ -90,7 +93,7 @@ public class PlayerController : MonoBehaviour {
                 animator.SetBool(AnimationStrings.isClimb, true);
                 StartCoroutine(ExitClimb());
             }
-        } else if (Input.GetKey(KeyCode.V)) {
+        } else if (Input.GetKey(KeyCode.V) && timeSinceLastVPressed >= cooldownDuration) {
             if (touchingDirections.IsGrounded && PlayerEnergyBar.instance.slider.value >= 200) {
                 PlayerEnergyBar.instance.slider.value -= 200;
                 animator.SetBool(AnimationStrings.isKick, true);
@@ -98,8 +101,11 @@ public class PlayerController : MonoBehaviour {
                 walkSpeed = 0;
                 jumpImpulse = 0;
                 isFlip = false;
+                // Đặt lại thời gian đếm ngược
+                timeSinceLastVPressed = 0f;
             }
         }
+        else if(PlayerHealthBar.instance.slider.value <= 0) animator.SetBool(AnimationStrings.isAlive, false);    
         //else if (Input.GetMouseButtonDown(0)) {
         //    animator.SetBool(AnimationStrings.isAttack, true);
         //    StartCoroutine (ExitAttack());
@@ -208,8 +214,8 @@ public class PlayerController : MonoBehaviour {
             jumpImpulse = 0;
             isFlip = false;
             Vector2 pushDirection = collision.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
-            pushDirection.y = .75f;
             rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+            PlayerHealthBar.instance.slider.value -= 200;
         }
         StartCoroutine(ExitStatus());
     }
