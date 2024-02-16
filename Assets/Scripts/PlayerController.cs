@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour {
                 animator.SetBool(AnimationStrings.isClimb, true);
                 StartCoroutine(ExitClimb());
             }
-        } else if (Input.GetKey(KeyCode.V) && timeSinceLastVPressed >= cooldownDuration) {
+        } else if (Input.GetKey(KeyCode.Alpha1) && timeSinceLastVPressed >= cooldownDuration) {
             if (touchingDirections.IsGrounded && PlayerEnergyBar.instance.slider.value >= 200) {
                 PlayerEnergyBar.instance.slider.value -= 200;
                 animator.SetBool(AnimationStrings.isKick, true);
