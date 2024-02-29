@@ -3,7 +3,7 @@ using UnityEngine;
 public class SkillEffect1 : MonoBehaviour {
     public GameObject explosion;
     public Transform spawnPos;
-    private float speed = 50f;
+    private float speed = 40f;
 
     private void Update() {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
