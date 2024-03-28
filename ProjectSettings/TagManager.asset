@@ -12,6 +12,8 @@ TagManager:
   - Ground
   - Skill1
   - Skill1Effect
+  - Magic
+  - Genie
   layers:
   - Default
   - TransparentFX

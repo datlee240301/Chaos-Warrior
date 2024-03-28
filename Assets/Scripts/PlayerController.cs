@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using MoreMountains.Feedbacks;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class PlayerController : MonoBehaviour {
+    public MMFeedbacks jumpFeedBack;
     private Collider2D playerCollider;
     public float walkSpeed;
     public float runSpeed;
@@ -172,6 +174,7 @@ public class PlayerController : MonoBehaviour {
         if (context.started && touchingDirections.IsGrounded && CanMove) {
             animator.SetTrigger(AnimationStrings.jumpTrigger);
             rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+            jumpFeedBack?.PlayFeedbacks();
         }
     }
 
@@ -209,6 +212,16 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("KnightSword")) {
+            animator.SetBool(AnimationStrings.isHit, true);
+            runSpeed = 0;
+            walkSpeed = 0;
+            jumpImpulse = 0;
+            isFlip = false;
+            Vector2 pushDirection = collision.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+            rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+            PlayerHealthBar.instance.slider.value -= 200;
+        }
+        else if (collision.gameObject.CompareTag("Magic")) {
             animator.SetBool(AnimationStrings.isHit, true);
             runSpeed = 0;
             walkSpeed = 0;
