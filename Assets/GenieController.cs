@@ -22,6 +22,13 @@ public class GenieController : MonoBehaviour {
         StartCoroutine(MoveRoutine());
     }
 
+    private void Update() {
+        if(GenieHealthBar.instance.slider.value <= 0) {
+            animator.SetBool("isDie", true);
+            Destroy(gameObject, 1f);
+        }
+    }
+
     IEnumerator MoveRoutine() {
         while (true) {
             if (movingRight) {
@@ -85,9 +92,16 @@ public class GenieController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("PlayerHitbox")) {
+            GenieHealthBar.instance.slider.value -= 200f;
             animator.SetBool("isHurt", true);
             moveSpeed = 0;
             StartCoroutine(ExitStatus());
+        } else if (collision.gameObject.CompareTag("Skill1Effect")) {
+            GenieHealthBar.instance.slider.value -= 600f;
+            animator.SetBool("isHurt", true);
+            moveSpeed = 0;
+            StartCoroutine(ExitStatus());
+            //EnenmyHealthBar.instance.slider.value -= EnenmyHealthBar.instance.slider.maxValue;
         }
     }
 }

@@ -15,7 +15,9 @@ public class SkillEffect1 : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("Ground")||collision.gameObject.CompareTag("Enemy")) {
+        if (collision.gameObject.CompareTag("Ground")||
+            collision.gameObject.CompareTag("Enemy")||
+            collision.gameObject.CompareTag("Genie")) {
             speed = 0;
             SpawnExplosion();
         }

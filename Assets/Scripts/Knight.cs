@@ -58,10 +58,10 @@ public class Knight : MonoBehaviour {
 
     private void Update() {
         Hastarget = attackZone.detectedColliders.Count > 0;
-        //if (EnenmyHealthBar.instance.slider.value <= 0) {
-        //    Destroy(gameObject, 1);
-        //    animator.SetBool(AnimationStrings.isDeath, true);
-        //}
+        if (KnightHealthBar.instance.slider.value <= 0) {
+            Destroy(gameObject, 1);
+            animator.SetBool(AnimationStrings.isDeath, true);
+        }
     }
 
     private void FixedUpdate() {
@@ -87,15 +87,19 @@ public class Knight : MonoBehaviour {
         if (collision.gameObject.CompareTag("PlayerHitbox")) {
             animator.SetBool(AnimationStrings.isKnightHit, true);
             walkSpeed = 0;
+            KnightHealthBar.instance.slider.value -= 200f;
             StartCoroutine(ExitStatus());
             Vector2 pushDirection = collision.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
             //EnenmyHealthBar.instance.slider.value -= 200;
         } else if (collision.gameObject.CompareTag("Arrow")) {
-            EnenmyHealthBar.instance.slider.value -= 200;
             walkSpeed = 0;
+            KnightHealthBar.instance.slider.value -= 100f;
         } else if (collision.gameObject.CompareTag("Skill1Effect")) {
+            animator.SetBool(AnimationStrings.isKnightHit, true);
             walkSpeed = 0;
+            KnightHealthBar.instance.slider.value -= 500f;
+            StartCoroutine(ExitStatus());
             //EnenmyHealthBar.instance.slider.value -= EnenmyHealthBar.instance.slider.maxValue;
         }
     }

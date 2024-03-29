@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
+using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class PlayerController : MonoBehaviour {
@@ -13,6 +15,8 @@ public class PlayerController : MonoBehaviour {
     public float airWalkSpeed;
     public float jumpImpulse;
     private float pushForce = 4f;
+    public bool isMovingRight;
+    public bool isMovingLeft;
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     public bool isFlip = true;
@@ -105,16 +109,94 @@ public class PlayerController : MonoBehaviour {
                 isFlip = false;
                 // Đặt lại thời gian đếm ngược
                 timeSinceLastVPressed = 0f;
-                Skill1.Instance.slider.value = Skill1.Instance.slider.maxValue;  
+                Skill1.Instance.slider.value = Skill1.Instance.slider.maxValue;
             }
+        } else if (PlayerHealthBar.instance.slider.value <= 0) animator.SetBool(AnimationStrings.isAlive, false);
+        if (isMovingRight) {
+                transform.Translate(Vector3.right * runSpeed * Time.deltaTime);
         }
-        else if(PlayerHealthBar.instance.slider.value <= 0) animator.SetBool(AnimationStrings.isAlive, false);    
+        if (isMovingLeft) {
+                transform.Translate(Vector3.left * runSpeed * Time.deltaTime);
+        }
         //else if (Input.GetMouseButtonDown(0)) {
         //    animator.SetBool(AnimationStrings.isAttack, true);
         //    StartCoroutine (ExitAttack());
         //}
     }
 
+    public void UseSkill1() {
+        if (touchingDirections.IsGrounded && PlayerEnergyBar.instance.slider.value >= 200
+            && timeSinceLastVPressed >= cooldownDuration) {
+            PlayerEnergyBar.instance.slider.value -= 200;
+            animator.SetBool(AnimationStrings.isKick, true);
+            runSpeed = 0;
+            walkSpeed = 0;
+            jumpImpulse = 0;
+            isFlip = false;
+            // Đặt lại thời gian đếm ngược
+            timeSinceLastVPressed = 0f;
+            Skill1.Instance.slider.value = Skill1.Instance.slider.maxValue;
+        }
+    }
+    /// <summary>
+    /// Mobile Phone
+    /// </summary>
+    public void ShootArrow() {
+        animator.SetBool(AnimationStrings.isFire, true);
+        runSpeed = 0;
+        walkSpeed = 0;
+        jumpImpulse = 0;
+    }
+
+    public void ExitShoot() {
+        animator.SetBool(AnimationStrings.isFire, false);
+        animator.SetBool(AnimationStrings.isAirFire, false);
+        runSpeed = 7;
+        walkSpeed = 3;
+        jumpImpulse = 6;
+    }
+
+    public void MoveRight() {
+        animator.SetBool("isMoving", true);
+        transform.localScale = new Vector3(1, 1, 1);
+        isMovingRight = true;
+        isMovingLeft = false;
+    }
+
+    public void ExitMoveRight() {
+        animator.SetBool("isMoving", false);
+        isMovingLeft = false;
+        isMovingRight = false;
+    }
+
+    public void MoveLeft() {
+        animator.SetBool("isMoving", true);
+        transform.localScale = new Vector2(-1, 1);
+        isMovingLeft = true;
+        isMovingRight = false;
+    }
+    public void JumpBtn() {
+        if (touchingDirections.IsGrounded && CanMove) {
+            animator.SetTrigger(AnimationStrings.jumpTrigger);
+            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+        }
+    }
+
+    public void UseSword() {
+        animator.SetBool("isAttack", true);
+    }
+
+    public void Climb() {
+        if (!touchingDirections.IsGrounded && touchingDirections.IsOnWall) {
+            animator.SetBool(AnimationStrings.isClimb, true);
+            StartCoroutine(ExitClimb());
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator ExitClimb() {
         yield return new WaitForSeconds(.3f);
         animator.SetBool(AnimationStrings.isClimb, false);
@@ -199,12 +281,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnAttack(InputAction.CallbackContext context) {
-        if (context.started) {
-            animator.SetBool(AnimationStrings.isAttack, true);
-            runSpeed = 0;
-            walkSpeed = 0;
-            jumpImpulse = 0;
-        }
+        //if (context.started) {
+        //    animator.SetBool(AnimationStrings.isAttack, true);
+        //    runSpeed = 0;
+        //    walkSpeed = 0;
+        //    jumpImpulse = 0;
+        //}
         //else if (context.canceled) {
         //    ExitAttack();
         //}
@@ -220,8 +302,7 @@ public class PlayerController : MonoBehaviour {
             Vector2 pushDirection = collision.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
             PlayerHealthBar.instance.slider.value -= 200;
-        }
-        else if (collision.gameObject.CompareTag("Magic")) {
+        } else if (collision.gameObject.CompareTag("Magic")) {
             animator.SetBool(AnimationStrings.isHit, true);
             runSpeed = 0;
             walkSpeed = 0;
@@ -249,13 +330,13 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void EnableCollider() {
-        
+
     }
 
     public IEnumerator DisableCollider() {
         //playerCollider.enabled = false;
         rb.gravityScale = 0;
-        yield return new WaitForSeconds (1.65f);
+        yield return new WaitForSeconds(1.65f);
         //playerCollider.enabled = true;
         rb.gravityScale = 1;
     }
