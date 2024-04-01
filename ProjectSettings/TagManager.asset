@@ -15,6 +15,9 @@ TagManager:
   - Magic
   - Genie
   - Red Monster
+  - MedusaRock
+  - Medusa
+  - MedusaSkill
   layers:
   - Default
   - TransparentFX

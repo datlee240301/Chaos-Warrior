@@ -581,6 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpFeedBack: {fileID: 0}
+  medusaSkill: {fileID: 1291115562039946687, guid: 7fef04ed7f7edfa4ebced58855fda0c6, type: 3}
   walkSpeed: 3
   runSpeed: 7
   airWalkSpeed: 3

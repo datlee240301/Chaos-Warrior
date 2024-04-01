@@ -1,8 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class RedMonsterControler : MonoBehaviour {
-    public static RedMonsterControler instance;
+public class RedMonsterController : MonoBehaviour {
+    public static RedMonsterController instance;
     private Vector3 startPos;
     private bool movingRight = true;
     private Transform playerTransform;
