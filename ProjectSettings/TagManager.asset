@@ -14,6 +14,7 @@ TagManager:
   - Skill1Effect
   - Magic
   - Genie
+  - Red Monster
   layers:
   - Default
   - TransparentFX

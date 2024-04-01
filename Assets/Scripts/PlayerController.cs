@@ -113,10 +113,10 @@ public class PlayerController : MonoBehaviour {
             }
         } else if (PlayerHealthBar.instance.slider.value <= 0) animator.SetBool(AnimationStrings.isAlive, false);
         if (isMovingRight) {
-                transform.Translate(Vector3.right * runSpeed * Time.deltaTime);
+            transform.Translate(Vector3.right * runSpeed * Time.deltaTime);
         }
         if (isMovingLeft) {
-                transform.Translate(Vector3.left * runSpeed * Time.deltaTime);
+            transform.Translate(Vector3.left * runSpeed * Time.deltaTime);
         }
         //else if (Input.GetMouseButtonDown(0)) {
         //    animator.SetBool(AnimationStrings.isAttack, true);
@@ -187,9 +187,17 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Climb() {
-        if (!touchingDirections.IsGrounded && touchingDirections.IsOnWall) {
+        StartCoroutine(WaitForClimbing());
+    }
+
+    public IEnumerator WaitForClimbing() {
+        if (touchingDirections.IsGrounded && touchingDirections.IsOnWall && CanMove) {
+            animator.SetTrigger(AnimationStrings.jumpTrigger);
+            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+            yield return new WaitForSeconds(0.35f);
             animator.SetBool(AnimationStrings.isClimb, true);
             StartCoroutine(ExitClimb());
+
         }
     }
 
