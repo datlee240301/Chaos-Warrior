@@ -67,6 +67,18 @@ public class ArrowScript : MonoBehaviour {
             collision.GetComponent<Rigidbody2D>().AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
             FindObjectOfType<LizardController>().animator.SetBool("isHurt", true);
             FindObjectOfType<LizardController>().StartCoroutine(FindObjectOfType<LizardController>().ExitStatus());
+        }
+        else if (collision.gameObject.CompareTag("Troll2")) {
+            GameObject light =  Instantiate(ligghtningEffect, spawnPoint.position,spawnPoint.rotation);
+            Destroy(light,0.35f);
+            Destroy(gameObject);
+            Troll2Controller.instance.moveSpeed = 0;
+            Troll2HealthBar.instance.slider.value -= 100f;
+            Vector2 pushDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+            pushDirection.y = .75f;
+            collision.GetComponent<Rigidbody2D>().AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+            FindObjectOfType<Troll2Controller>().animator.SetBool("isHurt", true);
+            FindObjectOfType<Troll2Controller>().StartCoroutine(FindObjectOfType<Troll2Controller>().ExitStatus());
         } else if (collision.gameObject.CompareTag("Ground")) {
             GameObject light = Instantiate(ligghtningEffect, spawnPoint.position, spawnPoint.rotation);
             Destroy(light, 0.35f);

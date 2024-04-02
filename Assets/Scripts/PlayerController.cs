@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
     public bool isMovingRight;
     public bool isMovingLeft;
     Vector2 moveInput;
-    TouchingDirections touchingDirections;
+    public TouchingDirections touchingDirections;
     public bool isFlip = true;
     private float timeSinceLastVPressed = 0f;
     private float cooldownDuration = 5f; // Thời gian chờ giữa các lần ấn V

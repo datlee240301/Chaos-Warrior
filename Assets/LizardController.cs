@@ -58,7 +58,6 @@ public class LizardController : MonoBehaviour
             } else {
                 while (transform.position.x > startPos.x - 3f) {
                     if (IsPlayerNearby()) {
-                        animator.SetBool("isAttack", true);
                         animator.SetBool("isWalk", false);
                         animator.SetBool("isAttack", true);
                         TurnTowardsPlayer();

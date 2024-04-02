@@ -19,6 +19,8 @@ TagManager:
   - Medusa
   - MedusaSkill
   - Lizard
+  - Troll2
+  - TrollBoss
   layers:
   - Default
   - TransparentFX

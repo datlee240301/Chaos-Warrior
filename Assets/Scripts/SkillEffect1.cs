@@ -20,7 +20,8 @@ public class SkillEffect1 : MonoBehaviour {
             collision.gameObject.CompareTag("Genie")||
             collision.gameObject.CompareTag("Medusa")||
             collision.gameObject.CompareTag("Red Monster")||
-            collision.gameObject.CompareTag("Lizard")) {
+            collision.gameObject.CompareTag("Lizard")  ||
+            collision.gameObject.CompareTag("Troll2")) {
             speed = 0;
             SpawnExplosion();
         }
