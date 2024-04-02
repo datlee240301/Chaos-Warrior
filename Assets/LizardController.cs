@@ -1,15 +1,17 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class RedMonsterController : MonoBehaviour {
-    public static RedMonsterController instance;
+public class LizardController : MonoBehaviour
+{
+    public static LizardController instance;
     private Vector3 startPos;
     private bool movingRight = true;
     private Transform playerTransform;
     public Animator animator;
     public float moveSpeed = 3f;
     public float waitTime = 1f;
-    public float stoppingDistance ;
+    public float stoppingDistance;
 
     private void Awake() {
         instance = this;
@@ -24,7 +26,7 @@ public class RedMonsterController : MonoBehaviour {
     }
 
     private void Update() {
-        if (RedMonsterHealthBar.instance.slider.value <= 0) {
+        if (LizardHealthbar.instance.slider.value <= 0) {
             animator.SetBool("isDie", true);
             Destroy(gameObject, 2f);
             moveSpeed = 0f;
@@ -58,7 +60,7 @@ public class RedMonsterController : MonoBehaviour {
                     if (IsPlayerNearby()) {
                         animator.SetBool("isAttack", true);
                         animator.SetBool("isWalk", false);
-                        //animator.SetBool("isAttack", true);
+                        animator.SetBool("isAttack", true);
                         TurnTowardsPlayer();
                         yield return new WaitForSeconds(waitTime);
                         movingRight = true;
@@ -103,12 +105,12 @@ public class RedMonsterController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("PlayerHitbox")) {
-            RedMonsterHealthBar.instance.slider.value -= 200f;
+            LizardHealthbar.instance.slider.value -= 200f;
             animator.SetBool("isHurt", true);
             moveSpeed = 0;
             StartCoroutine(ExitStatus());
         } else if (collision.gameObject.CompareTag("Skill1Effect")) {
-            RedMonsterHealthBar.instance.slider.value -= 600f;
+            LizardHealthbar.instance.slider.value -= 600f;
             animator.SetBool("isHurt", true);
             moveSpeed = 0;
             StartCoroutine(ExitStatus());

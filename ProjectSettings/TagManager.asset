@@ -18,6 +18,7 @@ TagManager:
   - MedusaRock
   - Medusa
   - MedusaSkill
+  - Lizard
   layers:
   - Default
   - TransparentFX

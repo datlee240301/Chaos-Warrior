@@ -55,6 +55,18 @@ public class ArrowScript : MonoBehaviour {
             collision.GetComponent<Rigidbody2D>().AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
             FindObjectOfType<MedusaController>().animator.SetBool("isHurt", true);
             FindObjectOfType<MedusaController>().StartCoroutine(FindObjectOfType<MedusaController>().ExitStatus());
+        }
+        else if (collision.gameObject.CompareTag("Lizard")) {
+            GameObject light =  Instantiate(ligghtningEffect, spawnPoint.position,spawnPoint.rotation);
+            Destroy(light,0.35f);
+            Destroy(gameObject);
+            LizardController.instance.moveSpeed = 0;
+            LizardHealthbar.instance.slider.value -= 100f;
+            Vector2 pushDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+            pushDirection.y = .75f;
+            collision.GetComponent<Rigidbody2D>().AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+            FindObjectOfType<LizardController>().animator.SetBool("isHurt", true);
+            FindObjectOfType<LizardController>().StartCoroutine(FindObjectOfType<LizardController>().ExitStatus());
         } else if (collision.gameObject.CompareTag("Ground")) {
             GameObject light = Instantiate(ligghtningEffect, spawnPoint.position, spawnPoint.rotation);
             Destroy(light, 0.35f);
