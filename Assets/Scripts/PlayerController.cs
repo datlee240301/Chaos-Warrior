@@ -293,13 +293,13 @@ public class PlayerController : MonoBehaviour {
 
     public void OnAttack(InputAction.CallbackContext context) {
         //if (context.started) {
-        //    animator.SetBool(AnimationStrings.isAttack, true);
-        //    runSpeed = 0;
-        //    walkSpeed = 0;
-        //    jumpImpulse = 0;
+        //    animator.setbool(animationstrings.isattack, true);
+        //    runspeed = 0;
+        //    walkspeed = 0;
+        //    jumpimpulse = 0;
         //}
         //else if (context.canceled) {
-        //    ExitAttack();
+        //    exitattack();
         //}
     }
 
