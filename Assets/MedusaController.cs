@@ -14,6 +14,8 @@ public class MedusaController : MonoBehaviour {
     public float waitTime = 1f;
     public float stoppingDistance;
     public float distanceToHit;
+    public GameObject effectPrefab;
+    public Transform spawnPos;
 
     private void Awake() {
         instance = this;
@@ -150,6 +152,11 @@ public class MedusaController : MonoBehaviour {
         moveSpeed = 3;
     }
 
+    public void SpawnEffecr() {
+        GameObject effect = Instantiate(effectPrefab, spawnPos.position, transform.rotation);
+        Destroy(effect,.5f);    
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("PlayerHitbox")) {
             MedusaHealthBar.instance.slider.value -= 200f;
@@ -163,4 +170,5 @@ public class MedusaController : MonoBehaviour {
             StartCoroutine(ExitStatus());
         }
     }
+
 }

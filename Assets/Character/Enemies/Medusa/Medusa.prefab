@@ -159,6 +159,37 @@ PolygonCollider2D:
       - {x: 6.432169, y: -0.80901694}
       - {x: 10.161074, y: -0.2704063}
   m_UseDelaunayMesh: 0
+--- !u!1 &5206377975751694939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3774207772564603214}
+  m_Layer: 8
+  m_Name: SpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3774207772564603214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5206377975751694939}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.11, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6487698221701691582}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5498892350134239389
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +430,7 @@ Transform:
   m_Children:
   - {fileID: 7779759879718106722}
   - {fileID: 7417676991331231484}
+  - {fileID: 3774207772564603214}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3343932249275085980
@@ -491,6 +523,8 @@ MonoBehaviour:
   waitTime: 1
   stoppingDistance: 3
   distanceToHit: 4
+  effectPrefab: {fileID: 4028991607991319032, guid: 3d90bee9f335a0949b471b5efeb6f568, type: 3}
+  spawnPos: {fileID: 3774207772564603214}
 --- !u!61 &2191771751954439380
 BoxCollider2D:
   m_ObjectHideFlags: 0
