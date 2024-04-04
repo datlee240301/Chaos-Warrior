@@ -2241,6 +2241,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &743521468 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6694755384380086177, guid: 6bd45090d120eb94eb250d540cf65ac1, type: 3}
+  m_PrefabInstance: {fileID: 8776948884618675522}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &743521470
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743521468}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 4.4745865, y: -0.9277844}
+      - {x: 3.6119585, y: -0.5576017}
+      - {x: 2.3304238, y: -0.06620085}
+      - {x: 3.452932, y: -1.198111}
+      - {x: 4.3631783, y: -1.3183835}
+      - {x: 4.435218, y: -1.1943011}
+  m_UseDelaunayMesh: 0
 --- !u!1 &946707544
 GameObject:
   m_ObjectHideFlags: 0
@@ -4819,7 +4875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6487698221701691582, guid: c8bc8174e06c54a418a96b313e127c4d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.31
+      value: -9.15
       objectReference: {fileID: 0}
     - target: {fileID: 6487698221701691582, guid: c8bc8174e06c54a418a96b313e127c4d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4857,25 +4913,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7306578150080893305, guid: c8bc8174e06c54a418a96b313e127c4d, type: 3}
-      propertyPath: distanceToHit
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7306578150080893305, guid: c8bc8174e06c54a418a96b313e127c4d, type: 3}
-      propertyPath: stoppingDistance
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7376970178161105787, guid: c8bc8174e06c54a418a96b313e127c4d, type: 3}
       propertyPath: m_Name
       value: Medusa
-      objectReference: {fileID: 0}
-    - target: {fileID: 7376970178161105787, guid: c8bc8174e06c54a418a96b313e127c4d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7417676991331231484, guid: c8bc8174e06c54a418a96b313e127c4d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -5.97
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5066,10 +5106,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5216251536100179318, guid: 8ac182ded7af049448dd43dfc47e7140, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5138,7 +5174,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6694755384380086177, guid: 6bd45090d120eb94eb250d540cf65ac1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 743521470}
   m_SourcePrefab: {fileID: 100100000, guid: 6bd45090d120eb94eb250d540cf65ac1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
