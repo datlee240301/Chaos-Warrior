@@ -24,7 +24,11 @@ public class GenieController : MonoBehaviour {
     }
 
     private void Update() {
-        if(GenieHealthBar.instance.slider.value <= 0) {
+        if (PlayerHealthBar.instance.slider.value <= 0) {
+            StopAllCoroutines();
+            StartCoroutine(MoveRoutine2());
+        }
+        if (GenieHealthBar.instance.slider.value <= 0) {
             animator.SetBool("isDie", true);
             Destroy(gameObject, 1f);
         }
@@ -52,6 +56,41 @@ public class GenieController : MonoBehaviour {
                 while (transform.position.x > startPos.x - distanceToHit) {
                     if (IsPlayerNearby()) {
                         animator.SetBool("isAttack", true);
+                        TurnTowardsPlayer();
+                        yield return new WaitForSeconds(waitTime);
+                        movingRight = true;
+                        break;
+                    }
+                    animator.SetBool("isAttack", false);
+                    transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+                    transform.localScale = new Vector2(-1, 1);
+                    yield return null;
+                }
+                yield return new WaitForSeconds(waitTime);
+                movingRight = true;
+            }
+        }
+    }
+    IEnumerator MoveRoutine2() {
+        while (true) {
+            if (movingRight) {
+                while (transform.position.x < startPos.x + distanceToHit) {
+                    if (IsPlayerNearby()) {
+                        TurnTowardsPlayer();
+                        yield return new WaitForSeconds(waitTime);
+                        movingRight = false;
+                        break;
+                    }
+                    animator.SetBool("isAttack", false);
+                    transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+                    transform.localScale = new Vector2(1, 1);
+                    yield return null;
+                }
+                yield return new WaitForSeconds(waitTime);
+                movingRight = false;
+            } else {
+                while (transform.position.x > startPos.x - distanceToHit) {
+                    if (IsPlayerNearby()) {
                         TurnTowardsPlayer();
                         yield return new WaitForSeconds(waitTime);
                         movingRight = true;

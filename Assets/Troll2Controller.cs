@@ -32,6 +32,10 @@ public class Troll2Controller : MonoBehaviour {
     }
 
     private void Update() {
+        if (PlayerHealthBar.instance.slider.value <= 0) {
+            StopAllCoroutines();
+            StartCoroutine(MoveRoutine());
+        }
         if (Troll2HealthBar.instance.slider.value <= 0) {
             animator.SetBool("isDie", true);
             Destroy(gameObject, 4f);

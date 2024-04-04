@@ -77,6 +77,52 @@ public class RedMonsterController : MonoBehaviour {
             }
         }
     }
+    IEnumerator MoveRoutine2() {
+        while (true) {
+            if (movingRight) {
+                while (transform.position.x < startPos.x + 3f) {
+                    if (IsPlayerNearby()) {
+                        animator.SetBool("isAttack", false);
+                        animator.SetBool("isWalk", false);
+                        TurnTowardsPlayer();
+                        yield return new WaitForSeconds(waitTime);
+                        movingRight = false;
+                        break;
+                    }
+                    animator.SetBool("isAttack", false);
+                    animator.SetBool("isWalk", true);
+                    transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+                    transform.localScale = new Vector2(1, 1);
+                    yield return null;
+                }
+                animator.SetBool("isWalk", false);
+                yield return new WaitForSeconds(waitTime);
+                animator.SetBool("isWalk", true);
+                movingRight = false;
+            } else {
+                while (transform.position.x > startPos.x - 3f) {
+                    if (IsPlayerNearby()) {
+                        animator.SetBool("isAttack", false);
+                        animator.SetBool("isWalk", false);
+                        //animator.SetBool("isAttack", true);
+                        TurnTowardsPlayer();
+                        yield return new WaitForSeconds(waitTime);
+                        movingRight = true;
+                        break;
+                    }
+                    animator.SetBool("isAttack", false);
+                    animator.SetBool("isWalk", true);
+                    transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+                    transform.localScale = new Vector2(-1, 1);
+                    yield return null;
+                }
+                animator.SetBool("isWalk", false);
+                yield return new WaitForSeconds(waitTime);
+                animator.SetBool("isWalk", true);
+                movingRight = true;
+            }
+        }
+    }
 
     bool IsPlayerNearby() {
         if (playerTransform != null) {

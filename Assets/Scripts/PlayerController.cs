@@ -119,7 +119,6 @@ public class PlayerController : MonoBehaviour {
             runSpeed = 0;
             walkSpeed = 0;
             jumpImpulse = 0;
-
         }
         if (isMovingRight) {
             transform.Translate(Vector3.right * runSpeed * Time.deltaTime);

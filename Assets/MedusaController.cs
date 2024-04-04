@@ -28,9 +28,14 @@ public class MedusaController : MonoBehaviour {
         rockObjects = GameObject.FindGameObjectsWithTag("MedusaRock"); // Tìm vật thể Rock trong scene
         animator = GetComponent<Animator>();
         StartCoroutine(MoveRoutine());
+        
     }
 
     private void Update() {
+        if(PlayerHealthBar.instance.slider.value <=0 ) {
+            StopAllCoroutines();
+            StartCoroutine(MoveRoutine2());
+        }
         if (MedusaHealthBar.instance.slider.value <= 0) {
             animator.SetBool("isDie", true);
             Destroy(gameObject, 2f);

@@ -4024,7 +4024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7549711594256399874, guid: b2c13c3231fc0a947bc34d0f6a4f6bfe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.13316
+      value: -13.36
       objectReference: {fileID: 0}
     - target: {fileID: 7549711594256399874, guid: b2c13c3231fc0a947bc34d0f6a4f6bfe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4867,11 +4867,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4188069762811014344, guid: c8bc8174e06c54a418a96b313e127c4d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4188069762811014344, guid: c8bc8174e06c54a418a96b313e127c4d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6487698221701691582, guid: c8bc8174e06c54a418a96b313e127c4d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4916,6 +4916,10 @@ PrefabInstance:
     - target: {fileID: 7376970178161105787, guid: c8bc8174e06c54a418a96b313e127c4d, type: 3}
       propertyPath: m_Name
       value: Medusa
+      objectReference: {fileID: 0}
+    - target: {fileID: 7376970178161105787, guid: c8bc8174e06c54a418a96b313e127c4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
