@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 259.91, y: 33.940002}
+  m_AnchoredPosition: {x: 246, y: 49}
   m_SizeDelta: {x: 46.96, y: 12.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8092492061085579039
@@ -122,7 +122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7549711594256399874
 Transform:
   m_ObjectHideFlags: 0
@@ -245,18 +245,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.681005, y: -0.46704304}
+  m_Offset: {x: -0.9043822, y: -0.5582692}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 7.3142858, y: 7.3142858}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5853052, y: 1.4392726}
+  m_Size: {x: 1.0320597, y: 2.0449653}
   m_EdgeRadius: 0
 --- !u!114 &8445976921577098118
 MonoBehaviour:
@@ -429,7 +429,7 @@ Transform:
   m_GameObject: {fileID: 6746432787787576239}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.59, y: 0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -480,10 +480,10 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 1.2655783, y: 0.028444529}
-      - {x: 0.7491655, y: 1.1399524}
-      - {x: 0.6266599, y: 0.8912047}
-      - {x: 1.0607792, y: 0.098620296}
-      - {x: 1.270647, y: -0.79037434}
+      - {x: 0.46700376, y: 1.4221132}
+      - {x: -0.12576813, y: 1.0557985}
+      - {x: 0.8726727, y: -0.112999916}
+      - {x: 1.2471333, y: -1.4487488}
   m_UseDelaunayMesh: 0
 --- !u!1 &8703428803321503275
 GameObject:
@@ -518,7 +518,7 @@ RectTransform:
   m_Father: {fileID: 679536070708954585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.000015258789, y: 0}
   m_SizeDelta: {x: 0.000038147, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

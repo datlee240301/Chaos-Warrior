@@ -9,6 +9,7 @@ public class MedusaSkill : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        PlayerHealthBar.instance.slider.value -= 400f;
         PlayerController.instance.gameObject.SetActive(false);
         MedusaController.instance.StopAllCoroutines();
         MedusaController.instance.StartCoroutine(MedusaController.instance.MoveRoutine2());

@@ -10,6 +10,7 @@ public class GenieController : MonoBehaviour {
     public float moveSpeed = 3f;
     public float waitTime = 1f;
     public float stoppingDistance = 5f;
+    public float distanceToHit;
 
     private void Awake() {
         instance = this;
@@ -32,7 +33,7 @@ public class GenieController : MonoBehaviour {
     IEnumerator MoveRoutine() {
         while (true) {
             if (movingRight) {
-                while (transform.position.x < startPos.x + 3f) {
+                while (transform.position.x < startPos.x + distanceToHit) {
                     if (IsPlayerNearby()) {
                         animator.SetBool("isAttack", true);
                         TurnTowardsPlayer();
@@ -48,7 +49,7 @@ public class GenieController : MonoBehaviour {
                 yield return new WaitForSeconds(waitTime);
                 movingRight = false;
             } else {
-                while (transform.position.x > startPos.x - 3f) {
+                while (transform.position.x > startPos.x - distanceToHit) {
                     if (IsPlayerNearby()) {
                         animator.SetBool("isAttack", true);
                         TurnTowardsPlayer();

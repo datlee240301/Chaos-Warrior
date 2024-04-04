@@ -588,10 +588,12 @@ MonoBehaviour:
   jumpImpulse: 6
   isMovingRight: 0
   isMovingLeft: 0
+  touchingDirections: {fileID: 0}
   isFlip: 1
   _isMoving: 0
   _isRunning: 0
   _isFacingRight: 1
+  animator: {fileID: 0}
 --- !u!114 &358089940286255076
 MonoBehaviour:
   m_ObjectHideFlags: 0

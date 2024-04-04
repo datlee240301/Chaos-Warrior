@@ -190,7 +190,8 @@ GameObject:
   - component: {fileID: 8767870608009036071}
   - component: {fileID: 5814122902225844489}
   - component: {fileID: 1136396888814460053}
-  - component: {fileID: 4497652891729298316}
+  - component: {fileID: 3927117163421047885}
+  - component: {fileID: 4778746631553465742}
   m_Layer: 8
   m_Name: Troll2
   m_TagString: Troll2
@@ -331,8 +332,40 @@ MonoBehaviour:
   moveSpeed: 3
   waitTime: 2
   stoppingDistance: 4
---- !u!61 &4497652891729298316
-BoxCollider2D:
+--- !u!114 &3927117163421047885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5316103681109745925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6081ac32697d48f47aa75b3e2a5efd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 64
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  groundDistance: 0.05
+  wallDistance: 0.2
+  ceilingDistance: 0.05
+  _isGrounded: 0
+  _isOnWall: 0
+  _isOnCeling: 0
+--- !u!70 &4778746631553465742
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -363,19 +396,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0462842, y: 0.041702747}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.3, y: 0.5}
-    oldSize: {x: 4.5478263, y: 3.1391304}
-    newSize: {x: 10.46, y: 7.22}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0427256, y: 3.0557246}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.049114704, y: 0.008489609}
+  m_Size: {x: 1.4419231, y: 3.0027208}
+  m_Direction: 0
 --- !u!1 &6694755384380086177
 GameObject:
   m_ObjectHideFlags: 0

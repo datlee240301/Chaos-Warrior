@@ -1,27 +1,23 @@
 ﻿using UnityEngine;
 
-public class FollowPlayer : MonoBehaviour {
-    private Transform playerTransform;
-    public float followSpeed = 3f;
-    public float stoppingDistance = 5f; // Khoảng cách mà nhân vật sẽ ngừng di chuyển khi gần Player
+public class CameraFollow : MonoBehaviour {
+    public string playerTag = "Player"; // Tag của gameobject cần theo dõi
+    public Vector3 offset; // Độ lệch giữa vị trí camera và vị trí của player
+
+    private GameObject player; // Biến để lưu trữ gameobject player
 
     void Start() {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        // Tìm gameobject có tag là "Player" và lưu trữ vào biến player
+        player = GameObject.FindGameObjectWithTag(playerTag);
     }
 
-    void Update() {
-        if (playerTransform != null) {
-            // Tính toán khoảng cách giữa nhân vật và Player trên trục X
-            float distanceX = playerTransform.position.x - transform.position.x;
+    void LateUpdate() {
+        if (player != null) {
+            // Tính toán vị trí mới của camera dựa trên vị trí của player và offset
+            Vector3 newPosition = player.transform.position + offset;
 
-            // Nếu khoảng cách vượt quá khoảng cách dừng, di chuyển nhân vật
-            if (Mathf.Abs(distanceX) > stoppingDistance) {
-                // Xác định hướng di chuyển
-                float directionX = Mathf.Sign(distanceX);
-
-                // Di chuyển nhân vật
-                transform.Translate(Vector3.right * directionX * followSpeed * Time.deltaTime);
-            }
+            // Cập nhật vị trí của camera đến vị trí mới
+            transform.position = newPosition;
         }
     }
 }

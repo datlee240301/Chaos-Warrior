@@ -157,7 +157,7 @@ PolygonCollider2D:
       - {x: 5.909795, y: -0.29333615}
       - {x: 5.600385, y: -0.6027448}
       - {x: 6.432169, y: -0.80901694}
-      - {x: 7.954863, y: -0.57588273}
+      - {x: 10.161074, y: -0.2704063}
   m_UseDelaunayMesh: 0
 --- !u!1 &5498892350134239389
 GameObject:
@@ -194,7 +194,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 259.91, y: 33.940002}
+  m_AnchoredPosition: {x: 259.91, y: 46}
   m_SizeDelta: {x: 46.96, y: 12.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6288621102511280207
@@ -297,7 +297,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -6.03, y: 0.05}
+  m_AnchoredPosition: {x: -5.97, y: 0.05}
   m_SizeDelta: {x: 810, y: 390.80002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1949550595765819644
@@ -489,7 +489,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   moveSpeed: 3
   waitTime: 1
-  stoppingDistance: 2
+  stoppingDistance: 3
+  distanceToHit: 4
 --- !u!61 &2191771751954439380
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -522,18 +523,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.04092312, y: -0.14975697}
+  m_Offset: {x: -0.084340334, y: -0.28621203}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 3.2}
+    oldSize: {x: 4.129032, y: 4.129032}
     newSize: {x: 3.2, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.43951988, y: 1.3864688}
+  m_Size: {x: 0.7000251, y: 1.6593789}
   m_EdgeRadius: 0
 --- !u!50 &7761984679171434471
 Rigidbody2D:

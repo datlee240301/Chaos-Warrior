@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409e40c6ad4ed5d48acd09269ec4e54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushForce: 3
+  pushForce: 1.85
   ligghtningEffect: {fileID: 7771049547266800648, guid: bb2cc1a1d49a45c4e8cf256498674adb, type: 3}
   spawnPoint: {fileID: 6028726782712943038}
 --- !u!60 &5283716195507156855

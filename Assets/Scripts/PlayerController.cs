@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     Rigidbody2D rb;
-    Animator animator;
+    public Animator animator;
 
 
     private void Awake() {
@@ -114,7 +114,13 @@ public class PlayerController : MonoBehaviour {
                 timeSinceLastVPressed = 0f;
                 Skill1.Instance.slider.value = Skill1.Instance.slider.maxValue;
             }
-        } else if (PlayerHealthBar.instance.slider.value <= 0) animator.SetBool(AnimationStrings.isAlive, false);
+        } else if (PlayerHealthBar.instance.slider.value <= 0) {
+            animator.SetBool(AnimationStrings.isAlive, false);
+            runSpeed = 0;
+            walkSpeed = 0;
+            jumpImpulse = 0;
+
+        }
         if (isMovingRight) {
             transform.Translate(Vector3.right * runSpeed * Time.deltaTime);
         }
@@ -149,6 +155,9 @@ public class PlayerController : MonoBehaviour {
         runSpeed = 0;
         walkSpeed = 0;
         jumpImpulse = 0;
+        if (!touchingDirections.IsGrounded) {
+            animator.SetBool(AnimationStrings.isAirFire, true);
+        }
     }
 
     public void ExitShoot() {
@@ -291,6 +300,14 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public void ExitAirFire() {
+        animator.SetBool(AnimationStrings.isFire, false);
+        animator.SetBool(AnimationStrings.isAirFire, false);
+        runSpeed = 7;
+        walkSpeed = 3;
+        jumpImpulse = 6;
+    }
+
     public void OnAttack(InputAction.CallbackContext context) {
         //if (context.started) {
         //    animator.setbool(animationstrings.isattack, true);
@@ -330,7 +347,7 @@ public class PlayerController : MonoBehaviour {
         StartCoroutine(ExitStatus());
     }
 
-    private IEnumerator ExitStatus() {
+    public IEnumerator ExitStatus() {
         yield return new WaitForSeconds(1f);
         animator.SetBool(AnimationStrings.isHit, false);
         runSpeed = 7;

@@ -13,6 +13,7 @@ public class MedusaController : MonoBehaviour {
     public float moveSpeed = 3f;
     public float waitTime = 1f;
     public float stoppingDistance;
+    public float distanceToHit;
 
     private void Awake() {
         instance = this;
@@ -38,7 +39,7 @@ public class MedusaController : MonoBehaviour {
     public IEnumerator MoveRoutine() {
         while (true) {
             if (movingRight) {
-                while (transform.position.x < startPos.x + 3f) {
+                while (transform.position.x < startPos.x + distanceToHit) {
                     if (IsPlayerNearby()) {
                         animator.SetBool("isAttack", true);
                         animator.SetBool("isWalk", false);
@@ -58,7 +59,7 @@ public class MedusaController : MonoBehaviour {
                 animator.SetBool("isWalk", true);
                 movingRight = false;
             } else {
-                while (transform.position.x > startPos.x - 3f) {
+                while (transform.position.x > startPos.x - distanceToHit) {
                     if (IsPlayerNearby()) {
                         animator.SetBool("isAttack", true);
                         animator.SetBool("isWalk", false);
@@ -83,7 +84,7 @@ public class MedusaController : MonoBehaviour {
     public IEnumerator MoveRoutine2() {
         while (true) {
             if (movingRight) {
-                while (transform.position.x < startPos.x + 3f) {
+                while (transform.position.x < startPos.x + distanceToHit) {
                     //if (IsPlayerNearby()) {
                     //    animator.SetBool("isAttack", true);
                     //    animator.SetBool("isWalk", false);
@@ -103,7 +104,7 @@ public class MedusaController : MonoBehaviour {
                 animator.SetBool("isWalk", true);
                 movingRight = false;
             } else {
-                while (transform.position.x > startPos.x - 3f) {
+                while (transform.position.x > startPos.x - distanceToHit) {
                     //if (IsPlayerNearby()) {
                     //    animator.SetBool("isAttack", true);
                     //    animator.SetBool("isWalk", false);

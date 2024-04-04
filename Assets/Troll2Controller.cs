@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Troll2Controller : MonoBehaviour {
     public static Troll2Controller instance;
+    TouchingDirections directions;
     private Vector3 startPos;
     private bool movingRight = true;
     private Transform playerTransform;
@@ -12,40 +13,35 @@ public class Troll2Controller : MonoBehaviour {
     public float waitTime = 1f;
     public float stoppingDistance;
     private int hitCount = 0;
+    private int palyerHitBoxCount = 0;
     bool hasPlayedEarthquake = false;
+    bool hasRun = false;
+    bool hasMove = false;
 
     private void Awake() {
         instance = this;
     }
 
     void Start() {
+        directions = GetComponent<TouchingDirections>();
         animator = GetComponent<Animator>();
         startPos = transform.position;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
-        //StartCoroutine(MoveRoutine());
-        InvokeRepeating("MoveRoutine", 0f, 9f); // Gọi MoveRoutine mỗi 9 giây
-        InvokeRepeating("RunRoutine", 3f, 9f); // Gọi RunRoutine mỗi 9 giây, bắt đầu từ sau 3 giây
-        InvokeRepeating("PlayEarthquake", 6f, 9f);
+        StartCoroutine(MoveRoutine());
     }
 
     private void Update() {
         if (Troll2HealthBar.instance.slider.value <= 0) {
             animator.SetBool("isDie", true);
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, 4f);
             moveSpeed = 0f;
         }
-        //if (Troll2HealthBar.instance.slider.value <= 500 && !hasPlayedEarthquake) {
-        //    StartCoroutine(PlayEarthquake());
-        //    hasPlayedEarthquake = true;
-        //}
-        //if (PlayerHealthBar.instance.slider.value <= 1700) {
-        //    StopAllCoroutines();
-        //    animator.SetBool("isShake", false);
-        //    StartCoroutine(MoveRoutine());
-        //    moveSpeed = 3f;
-        //}
-
+        if (Troll2HealthBar.instance.slider.value <= 1000 && !hasPlayedEarthquake) {
+            StartCoroutine(PlayEarthquake());
+            hasPlayedEarthquake = true;
+        }
+        //ContinuousMove();
     }
 
     private void FixedUpdate() {
@@ -57,8 +53,22 @@ public class Troll2Controller : MonoBehaviour {
         //}
     }
 
+    //void ContinuousMove() {
+    //    if (movingRight) {
+    //        transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+    //        if (directions.IsOnWall) {
+    //            movingRight = false;
+    //        }
+    //    } else {
+    //        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+    //        if (directions.IsOnWall) {
+    //            movingRight = true;
+    //        }
+    //    }
+    //}
     public IEnumerator MoveRoutine() {
         while (true) {
+            moveSpeed = 3f;
             animator.SetBool("isShake", false);
             if (movingRight) {
                 while (transform.position.x < startPos.x + 3f) {
@@ -136,7 +146,7 @@ public class Troll2Controller : MonoBehaviour {
                 animator.SetBool("isWalk", false);
                 animator.SetBool("isDie", false);
                 animator.SetBool("isAttack", true);
-                yield return new WaitForSeconds(waitTime);
+                yield return new WaitForSeconds(.4f);
                 movingRight = false;
             } else {
                 animator.SetBool("isShake", false);
@@ -153,14 +163,14 @@ public class Troll2Controller : MonoBehaviour {
                 animator.SetBool("isWalk", false);
                 animator.SetBool("isDie", false);
                 animator.SetBool("isAttack", true);
-                yield return new WaitForSeconds(waitTime);
+                yield return new WaitForSeconds(.4f);
                 movingRight = true;
             }
-            if (Vector3.Distance(transform.position, playerTransform.position) > 7) {
-                StopAllCoroutines();
-                StartCoroutine(MoveRoutine());
-                moveSpeed = 3;
-            }
+            //if (Vector3.Distance(transform.position, playerTransform.position) > 7) {
+            //    StopAllCoroutines();
+            //    StartCoroutine(MoveRoutine());
+            //    moveSpeed = 3;
+            //}
         }
     }
 
@@ -171,13 +181,13 @@ public class Troll2Controller : MonoBehaviour {
         animator.SetBool("isRunning", false);
         animator.SetBool("isHurt", false);
         animator.SetBool("isWalk", false);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0f);
     }
 
     public void MakeEarthquake() {
         FindObjectOfType<CameraShake>().Shake();
-        //if (PlayerController.instance.touchingDirections.IsGrounded)
-        //    PlayerHealthBar.instance.slider.value -= 100;
+        if (PlayerController.instance.touchingDirections.IsGrounded)
+            PlayerHealthBar.instance.slider.value -= 100;
     }
 
     bool IsPlayerNearby() {
@@ -206,28 +216,25 @@ public class Troll2Controller : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("PlayerHitbox")) {
             Troll2HealthBar.instance.slider.value -= 200f;
-            animator.SetBool("isHurt", true);
-            moveSpeed = 0;
+            if (Troll2HealthBar.instance.slider.value <= 1000) animator.SetBool("isHurt", true);
+            palyerHitBoxCount++;
+            if (palyerHitBoxCount == 1) {
+                StopAllCoroutines();
+                StartCoroutine(RunRoutine());
+            }
+            //animator.SetBool("isHurt", true);
             //StartCoroutine(ExitStatus());
-            StopAllCoroutines();
-            StartCoroutine(RunRoutine());
         } else if (collision.gameObject.CompareTag("Skill1Effect")) {
             Troll2HealthBar.instance.slider.value -= 600f;
-            //animator.SetBool("isHurt", true);
-            moveSpeed = 0;
-            StopAllCoroutines();
-            StartCoroutine(MoveRoutine());
-            moveSpeed = 3;
+            animator.SetBool("isHurt", true);
             //StartCoroutine(ExitStatus());
         } else if (collision.gameObject.CompareTag("Arrow")) {
-            StopAllCoroutines();
-            StartCoroutine(PlayEarthquake());
-            //hitCount++;
-            //if (hitCount >= 3) {
-            //    StopAllCoroutines();
-            //    StartCoroutine(RunRoutine());
-            //    hitCount = 0;
-            //}
+            hitCount++;
+            if (Troll2HealthBar.instance.slider.value <= 1000) animator.SetBool("isHurt", true);
+            if (hitCount == 1) {
+                StopAllCoroutines();
+                StartCoroutine(RunRoutine());
+            }
         }
     }
 }
