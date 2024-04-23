@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &304842460016510805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 611830222597368131}
+  m_Layer: 7
+  m_Name: SpawnFireballPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &611830222597368131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304842460016510805}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.08, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3098394907532399903}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &481158279140448625
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +518,7 @@ Transform:
   - {fileID: 628007224983953690}
   - {fileID: 540296751041164396}
   - {fileID: 3581485365306451261}
+  - {fileID: 611830222597368131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5414845587402349760
@@ -854,7 +886,9 @@ MonoBehaviour:
   skill1EffectPos1: {fileID: 2817379509914052688}
   skill1EffectPos2: {fileID: 652586275714137115}
   skill1EffectPos3: {fileID: 1610573206882327992}
+  fireballSpawnPos: {fileID: 611830222597368131}
   prepareSkill1Effect: {fileID: 4028991607991319032, guid: 3d90bee9f335a0949b471b5efeb6f568, type: 3}
+  fireball: {fileID: 7304132072286649525, guid: d853021cee77a3240b0311598449192b, type: 3}
   speed: 30
 --- !u!114 &8048294560681092451
 MonoBehaviour:

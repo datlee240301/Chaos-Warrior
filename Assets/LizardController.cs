@@ -27,10 +27,10 @@ public class LizardController : MonoBehaviour
     }
 
     private void Update() {
-        if (PlayerHealthBar.instance.slider.value <= 0) {
-            StopAllCoroutines();
-            StartCoroutine(MoveRoutine2());
-        }
+        //if (PlayerHealthBar.instance.slider.value <= 0) {
+        //    StopAllCoroutines();
+        //    StartCoroutine(MoveRoutine2());
+        //}
         if (LizardHealthbar.instance.slider.value <= 0) {
             animator.SetBool("isDie", true);
             Destroy(gameObject, 2f);

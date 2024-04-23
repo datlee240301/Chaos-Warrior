@@ -21,6 +21,8 @@ TagManager:
   - Lizard
   - Troll2
   - TrollBoss
+  - Wizard
+  - Fireball
   layers:
   - Default
   - TransparentFX

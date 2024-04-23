@@ -7,8 +7,8 @@ public class PlayerShoot : MonoBehaviour
     public GameObject arrowPrefab;
     public Transform shootingPoint;
     public GameObject skill1Effect;
-    public Transform skill1EffectPos1,skill1EffectPos2,skill1EffectPos3;
-    public GameObject prepareSkill1Effect;
+    public Transform skill1EffectPos1,skill1EffectPos2,skill1EffectPos3, fireballSpawnPos;
+    public GameObject prepareSkill1Effect, fireball;
     public float speed;
     private void Awake() {
         instance = this;
@@ -43,5 +43,9 @@ public class PlayerShoot : MonoBehaviour
         GameObject skill11 = Instantiate(prepareSkill1Effect, transform.position, transform.rotation);
         yield return new WaitForSeconds(0.45f);
         Destroy(skill11);
+    }
+
+    public void SpawnFireball() {
+        GameObject fire = Instantiate(fireball, fireballSpawnPos.position, skill1EffectPos1.rotation);
     }
 }
