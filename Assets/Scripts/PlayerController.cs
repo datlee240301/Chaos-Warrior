@@ -354,9 +354,11 @@ public class PlayerController : MonoBehaviour {
         } else if (collision.gameObject.CompareTag("Bow")) {
             PlayerPrefs.SetInt("EnableBow", 1);
             Destroy(collision.gameObject);
+            NoticeManager.instance.ShowBowNoticeText();
         } else if (collision.gameObject.CompareTag("Skill1Book")) {
             PlayerPrefs.SetInt("Skill1", 1);
             Destroy(collision.gameObject);
+            NoticeManager.instance.ShowSkill1NoticeText();
         }
         else if (collision.gameObject.CompareTag("HealthPoint")) {
             PlayerHealthBar.instance.slider.value += 100;
