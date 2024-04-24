@@ -23,6 +23,9 @@ TagManager:
   - TrollBoss
   - Wizard
   - Fireball
+  - Bow
+  - Skill1Book
+  - HealthPoint
   layers:
   - Default
   - TransparentFX

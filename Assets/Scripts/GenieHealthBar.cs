@@ -13,7 +13,6 @@ public class GenieHealthBar : MonoBehaviour
     void Start()
     {
         slider = GetComponent<Slider>();
-        slider.maxValue = 1000;
         slider.value = slider.maxValue;
     }
 

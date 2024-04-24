@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 304842460016510805}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.08, z: 0}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -180,6 +180,37 @@ Transform:
   - {fileID: 2817379509914052688}
   - {fileID: 652586275714137115}
   - {fileID: 1610573206882327992}
+  m_Father: {fileID: 3098394907532399903}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2353667165262375512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4316596979664035835}
+  m_Layer: 7
+  m_Name: SpawnFireballPos (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4316596979664035835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2353667165262375512}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.52, y: 4.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 3098394907532399903}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3250156029391094642
@@ -519,6 +550,8 @@ Transform:
   - {fileID: 540296751041164396}
   - {fileID: 3581485365306451261}
   - {fileID: 611830222597368131}
+  - {fileID: 5404086150757937961}
+  - {fileID: 4316596979664035835}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5414845587402349760
@@ -887,6 +920,8 @@ MonoBehaviour:
   skill1EffectPos2: {fileID: 652586275714137115}
   skill1EffectPos3: {fileID: 1610573206882327992}
   fireballSpawnPos: {fileID: 611830222597368131}
+  fireballSpawnPos2: {fileID: 0}
+  fireballSpawnPos3: {fileID: 0}
   prepareSkill1Effect: {fileID: 4028991607991319032, guid: 3d90bee9f335a0949b471b5efeb6f568, type: 3}
   fireball: {fileID: 7304132072286649525, guid: d853021cee77a3240b0311598449192b, type: 3}
   speed: 30
@@ -1346,4 +1381,35 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3581485365306451261}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8453345359874256610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5404086150757937961}
+  m_Layer: 7
+  m_Name: SpawnFireballPos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5404086150757937961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8453345359874256610}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.36, y: 5.72, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3098394907532399903}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

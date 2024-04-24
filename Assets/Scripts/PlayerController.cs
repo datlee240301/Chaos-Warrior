@@ -338,7 +338,7 @@ public class PlayerController : MonoBehaviour {
             Vector2 pushDirection = collision.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
             PlayerHealthBar.instance.slider.value -= 200;
-        }else if (collision.gameObject.CompareTag("Fireball")) {
+        } else if (collision.gameObject.CompareTag("Fireball")) {
             animator.SetBool(AnimationStrings.isHit, true);
             runSpeed = 0;
             walkSpeed = 0;
@@ -351,6 +351,16 @@ public class PlayerController : MonoBehaviour {
             Vector2 spawnPos = new Vector2(transform.position.x, transform.position.y - .3f);
             Instantiate(medusaSkill, spawnPos, transform.rotation);
             //gameObject.SetActive(false);    
+        } else if (collision.gameObject.CompareTag("Bow")) {
+            PlayerPrefs.SetInt("EnableBow", 1);
+            Destroy(collision.gameObject);
+        } else if (collision.gameObject.CompareTag("Skill1Book")) {
+            PlayerPrefs.SetInt("Skill1", 1);
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("HealthPoint")) {
+            PlayerHealthBar.instance.slider.value += 100;
+            Destroy(collision.gameObject);
         }
         StartCoroutine(ExitStatus());
     }

@@ -83,7 +83,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 3000
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 8445976921577098118}
   - component: {fileID: 1278058542248096720}
   - component: {fileID: 2230089190391852293}
+  - component: {fileID: -5905661206918566198}
   m_Layer: 8
   m_Name: Red Monster
   m_TagString: Red Monster
@@ -291,6 +292,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.10483217, y: -0.5332501}
   m_Size: {x: 0.8680048, y: 2.1990657}
   m_Direction: 0
+--- !u!114 &-5905661206918566198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3605707025030900801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2696ef52ad8aff94f803db040c981b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 1300187807199653422, guid: 47c8d6f3308255248ac2a2392ae5feef, type: 3}
 --- !u!1 &4625738026931344257
 GameObject:
   m_ObjectHideFlags: 0

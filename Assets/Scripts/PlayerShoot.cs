@@ -7,7 +7,7 @@ public class PlayerShoot : MonoBehaviour
     public GameObject arrowPrefab;
     public Transform shootingPoint;
     public GameObject skill1Effect;
-    public Transform skill1EffectPos1,skill1EffectPos2,skill1EffectPos3, fireballSpawnPos;
+    public Transform skill1EffectPos1,skill1EffectPos2,skill1EffectPos3, fireballSpawnPos, fireballSpawnPos2, fireballSpawnPos3;
     public GameObject prepareSkill1Effect, fireball;
     public float speed;
     private void Awake() {
@@ -46,6 +46,8 @@ public class PlayerShoot : MonoBehaviour
     }
 
     public void SpawnFireball() {
-        GameObject fire = Instantiate(fireball, fireballSpawnPos.position, skill1EffectPos1.rotation);
+        GameObject fire1 = Instantiate(fireball, fireballSpawnPos.position, skill1EffectPos1.rotation);
+        GameObject fire2 = Instantiate(fireball, fireballSpawnPos2.position, skill1EffectPos2.rotation);
+        GameObject fire3 = Instantiate(fireball, fireballSpawnPos3.position, skill1EffectPos2.rotation);
     }
 }

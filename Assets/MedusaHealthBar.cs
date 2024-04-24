@@ -14,7 +14,6 @@ public class MedusaHealthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         slider = GetComponent<Slider>();
-        slider.maxValue = 1000;
         slider.value = slider.maxValue;
     }
 
