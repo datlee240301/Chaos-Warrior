@@ -1,8 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WizardController : MonoBehaviour {
     public static WizardController instance;
+    [SerializeField]
+    public Slider slider;
     private Vector3 startPos;
     private bool movingRight = true;
     private Transform playerTransform;
@@ -17,6 +20,8 @@ public class WizardController : MonoBehaviour {
 
     private void Awake() {
         instance = this;
+        slider = GetComponent<Slider>();
+        slider.value = slider.maxValue;
     }
 
     void Start() {
@@ -28,18 +33,18 @@ public class WizardController : MonoBehaviour {
     }
 
     private void Update() {
-        if (WizardHealthBar.instance.slider.value <= 0) {
+        if (slider.value <= 0) {
             animator.SetBool("isDie", true);
             //animator.SetBool("isWalk", false);
             //animator.SetBool("isAttack1", false);
             Destroy(gameObject, 2f);
             moveSpeed = 0f;
         }
-        if (WizardHealthBar.instance.slider.value <= 500) {
+        if (slider.value <= 500) {
             StopAllCoroutines();
             SpawnFireball();
             //SpawnFireball();
-            
+
         }
     }
 
@@ -180,12 +185,17 @@ public class WizardController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("PlayerHitbox")) {
-            WizardHealthBar.instance.slider.value -= 200f;
+            slider.value -= 200f;
             animator.SetBool("isHurt", true);
             moveSpeed = 0;
             StartCoroutine(ExitStatus());
         } else if (collision.gameObject.CompareTag("Skill1Effect")) {
-            WizardHealthBar.instance.slider.value -= 600f;
+            slider.value -= 600f;
+            animator.SetBool("isHurt", true);
+            moveSpeed = 0;
+            StartCoroutine(ExitStatus());
+        }else if (collision.gameObject.CompareTag("Arrow")) {
+            slider.value -= 100;
             animator.SetBool("isHurt", true);
             moveSpeed = 0;
             StartCoroutine(ExitStatus());

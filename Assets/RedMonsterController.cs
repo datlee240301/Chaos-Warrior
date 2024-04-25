@@ -1,8 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RedMonsterController : MonoBehaviour {
     public static RedMonsterController instance;
+    public Slider slider;
     private Vector3 startPos;
     private bool movingRight = true;
     private Transform playerTransform;
@@ -13,6 +15,8 @@ public class RedMonsterController : MonoBehaviour {
 
     private void Awake() {
         instance = this;
+        slider = GetComponent<Slider>();
+        slider.value = slider.maxValue;
     }
 
     void Start() {
@@ -24,7 +28,7 @@ public class RedMonsterController : MonoBehaviour {
     }
 
     private void Update() {
-        if (RedMonsterHealthBar.instance.slider.value <= 0) {
+        if (slider.value <= 0) {
             animator.SetBool("isDie", true);
             Destroy(gameObject, 2f);
             moveSpeed = 0f;
@@ -157,6 +161,11 @@ public class RedMonsterController : MonoBehaviour {
             RedMonsterHealthBar.instance.slider.value -= 600f;
             animator.SetBool("isHurt", true);
             moveSpeed = 0;
+            StartCoroutine(ExitStatus());
+        } else if (collision.gameObject.CompareTag("Arrow")) {
+            slider.value -= 100;
+            moveSpeed = 0;
+            animator.SetBool("isHurt", true);
             StartCoroutine(ExitStatus());
         }
     }

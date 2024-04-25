@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Troll2Controller : MonoBehaviour {
     public static Troll2Controller instance;
+    public GameObject attackRange;
+    public Slider slider;
     TouchingDirections directions;
     private Vector3 startPos;
     private bool movingRight = true;
@@ -20,6 +23,8 @@ public class Troll2Controller : MonoBehaviour {
 
     private void Awake() {
         instance = this;
+        slider = GetComponent<Slider>();
+        slider.value = slider.maxValue;
     }
 
     void Start() {
@@ -32,16 +37,16 @@ public class Troll2Controller : MonoBehaviour {
     }
 
     private void Update() {
-        if (PlayerHealthBar.instance.slider.value <= 0) {
+        if (slider.value <= 0) {
             StopAllCoroutines();
             StartCoroutine(MoveRoutine());
         }
-        if (Troll2HealthBar.instance.slider.value <= 0) {
+        if (slider.value <= 0) {
             animator.SetBool("isDie", true);
             Destroy(gameObject, 4f);
             moveSpeed = 0f;
         }
-        if (Troll2HealthBar.instance.slider.value <= 1000 && !hasPlayedEarthquake) {
+        if (slider.value <= 1000 && !hasPlayedEarthquake) {
             StartCoroutine(PlayEarthquake());
             hasPlayedEarthquake = true;
         }
@@ -219,8 +224,8 @@ public class Troll2Controller : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("PlayerHitbox")) {
-            Troll2HealthBar.instance.slider.value -= 200f;
-            if (Troll2HealthBar.instance.slider.value <= 1000) animator.SetBool("isHurt", true);
+            slider.value -= 200f;
+            if (slider.value <= 1000) animator.SetBool("isHurt", true);
             palyerHitBoxCount++;
             if (palyerHitBoxCount == 1) {
                 StopAllCoroutines();
@@ -229,15 +234,29 @@ public class Troll2Controller : MonoBehaviour {
             //animator.SetBool("isHurt", true);
             //StartCoroutine(ExitStatus());
         } else if (collision.gameObject.CompareTag("Skill1Effect")) {
-            Troll2HealthBar.instance.slider.value -= 600f;
+            slider.value -= 600f;
             animator.SetBool("isHurt", true);
             //StartCoroutine(ExitStatus());
         } else if (collision.gameObject.CompareTag("Arrow")) {
             hitCount++;
-            if (Troll2HealthBar.instance.slider.value <= 1000) animator.SetBool("isHurt", true);
+            slider.value -= 100;
+            if (slider.value <= 1000) animator.SetBool("isHurt", true);
             if (hitCount == 1) {
                 StopAllCoroutines();
                 StartCoroutine(RunRoutine());
+            }
+        } else if (collision.CompareTag("Troll2DetectZone") && gameObject.CompareTag("Player")) {
+            StopAllCoroutines();
+            StartCoroutine(RunRoutine());
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        BoxCollider2D attackRangeCollider = attackRange.GetComponent<BoxCollider2D>();
+        if (collision == attackRangeCollider) {
+            if (collision.gameObject.CompareTag("Player")) {
+                StopAllCoroutines();
+                StartCoroutine(MoveRoutine());
             }
         }
     }

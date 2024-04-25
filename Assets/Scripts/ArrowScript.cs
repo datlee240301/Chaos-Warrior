@@ -35,13 +35,13 @@ public class ArrowScript : MonoBehaviour {
             GameObject light = Instantiate(ligghtningEffect, spawnPoint.position, spawnPoint.rotation);
             Destroy(light, 0.35f);
             Destroy(gameObject);
-            RedMonsterController.instance.moveSpeed = 0;
-            RedMonsterHealthBar.instance.slider.value -= 100f;
+            //RedMonsterController.instance.moveSpeed = 0;
+            //RedMonsterHealthBar.instance.slider.value -= 100f;
             Vector2 pushDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             pushDirection.y = .75f;
             collision.GetComponent<Rigidbody2D>().AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
-            FindObjectOfType<RedMonsterController>().animator.SetBool("isHurt", true);
-            FindObjectOfType<RedMonsterController>().StartCoroutine(FindObjectOfType<RedMonsterController>().ExitStatus());
+            //FindObjectOfType<RedMonsterController>().animator.SetBool("isHurt", true);
+            //FindObjectOfType<RedMonsterController>().StartCoroutine(FindObjectOfType<RedMonsterController>().ExitStatus());
         } else if (collision.gameObject.CompareTag("Medusa")) {
             GameObject light = Instantiate(ligghtningEffect, spawnPoint.position, spawnPoint.rotation);
             Destroy(light, 0.35f);
@@ -68,26 +68,26 @@ public class ArrowScript : MonoBehaviour {
             GameObject light = Instantiate(ligghtningEffect, spawnPoint.position, spawnPoint.rotation);
             Destroy(light, 0.35f);
             Destroy(gameObject);
-            Troll2Controller.instance.moveSpeed = 0;
-            Troll2HealthBar.instance.slider.value -= 100f;
+            //Troll2Controller.instance.moveSpeed = 0;
+            //Troll2HealthBar.instance.slider.value -= 100f;
             Vector2 pushDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             pushDirection.y = .75f;
             collision.GetComponent<Rigidbody2D>().AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
             hitCount++;
             //FindObjectOfType<Troll2Controller>().animator.SetBool("isHurt", true);
-            FindObjectOfType<Troll2Controller>().StartCoroutine(FindObjectOfType<Troll2Controller>().ExitStatus());
+            //FindObjectOfType<Troll2Controller>().StartCoroutine(FindObjectOfType<Troll2Controller>().ExitStatus());
         }else if (collision.gameObject.CompareTag("Wizard")) {
             GameObject light = Instantiate(ligghtningEffect, spawnPoint.position, spawnPoint.rotation);
             Destroy(light, 0.35f);
             Destroy(gameObject);
-            WizardController.instance.moveSpeed = 0;
-            WizardHealthBar.instance.slider.value -= 100f;
+            //WizardController.instance.moveSpeed = 0;
+            //WizardHealthBar.instance.slider.value -= 100f;
             Vector2 pushDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             pushDirection.y = .75f;
             collision.GetComponent<Rigidbody2D>().AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
             hitCount++;
-            FindObjectOfType<WizardController>().animator.SetBool("isHurt", true);
-            FindObjectOfType<WizardController>().StartCoroutine(FindObjectOfType<WizardController>().ExitStatus());
+            //FindObjectOfType<WizardController>().animator.SetBool("isHurt", true);
+            //FindObjectOfType<WizardController>().StartCoroutine(FindObjectOfType<WizardController>().ExitStatus());
         } else if (collision.gameObject.CompareTag("Ground")) {
             GameObject light = Instantiate(ligghtningEffect, spawnPoint.position, spawnPoint.rotation);
             Destroy(light, 0.35f);
