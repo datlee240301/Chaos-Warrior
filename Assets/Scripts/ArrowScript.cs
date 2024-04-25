@@ -24,13 +24,13 @@ public class ArrowScript : MonoBehaviour {
             GameObject light = Instantiate(ligghtningEffect, spawnPoint.position, spawnPoint.rotation);
             Destroy(light, 0.35f);
             Destroy(gameObject);
-            GenieController.instance.moveSpeed = 0;
-            GenieHealthBar.instance.slider.value -= 100f;
+            //GenieController.instance.moveSpeed = 0;
+            //GenieHealthBar.instance.slider.value -= 100f;
             Vector2 pushDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             pushDirection.y = .75f;
             collision.GetComponent<Rigidbody2D>().AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
-            FindObjectOfType<GenieController>().animator.SetBool("isHurt", true);
-            FindObjectOfType<GenieController>().StartCoroutine(FindObjectOfType<GenieController>().ExitStatus());
+            //FindObjectOfType<GenieController>().animator.SetBool("isHurt", true);
+            //FindObjectOfType<GenieController>().StartCoroutine(FindObjectOfType<GenieController>().ExitStatus());
         } else if (collision.gameObject.CompareTag("Red Monster")) {
             GameObject light = Instantiate(ligghtningEffect, spawnPoint.position, spawnPoint.rotation);
             Destroy(light, 0.35f);

@@ -26,6 +26,7 @@ TagManager:
   - Bow
   - Skill1Book
   - HealthPoint
+  - Troll2DetectZone
   layers:
   - Default
   - TransparentFX
