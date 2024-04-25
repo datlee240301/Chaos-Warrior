@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class Knight : MonoBehaviour {
     public static Knight Instance;
+    public Slider slider;
     private int hitCount;
     private int hitShotCount;
     private float pushForce = 4f;
@@ -50,6 +52,8 @@ public class Knight : MonoBehaviour {
     }
 
     private void Awake() {
+        slider = GetComponent<Slider>();
+        slider.value = slider.maxValue;
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
         animator = GetComponent<Animator>();
@@ -58,7 +62,7 @@ public class Knight : MonoBehaviour {
 
     private void Update() {
         Hastarget = attackZone.detectedColliders.Count > 0;
-        if (KnightHealthBar.instance.slider.value <= 0) {
+        if (slider.value <= 0) {
             Destroy(gameObject, 1);
             animator.SetBool(AnimationStrings.isDeath, true);
         }
@@ -94,7 +98,10 @@ public class Knight : MonoBehaviour {
             //EnenmyHealthBar.instance.slider.value -= 200;
         } else if (collision.gameObject.CompareTag("Arrow")) {
             walkSpeed = 0;
-            KnightHealthBar.instance.slider.value -= 100f;
+            slider.value -= 100;
+            //KnightHealthBar.instance.slider.value -= 100f;
+            animator.SetBool(AnimationStrings.isKnightHit, true);
+            StartCoroutine(ExitStatus());
         } else if (collision.gameObject.CompareTag("Skill1Effect")) {
             animator.SetBool(AnimationStrings.isKnightHit, true);
             walkSpeed = 0;

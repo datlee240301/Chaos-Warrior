@@ -18,8 +18,8 @@ public class ArrowScript : MonoBehaviour {
             Vector2 pushDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             pushDirection.y = .75f;
             collision.GetComponent<Rigidbody2D>().AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
-            FindObjectOfType<Knight>().animator.SetBool(AnimationStrings.isKnightHit, true);
-            FindObjectOfType<Knight>().StartCoroutine(FindObjectOfType<Knight>().ExitStatus());
+            //FindObjectOfType<Knight>().animator.SetBool(AnimationStrings.isKnightHit, true);
+            //FindObjectOfType<Knight>().StartCoroutine(FindObjectOfType<Knight>().ExitStatus());
         } else if (collision.gameObject.CompareTag("Genie")) {
             GameObject light = Instantiate(ligghtningEffect, spawnPoint.position, spawnPoint.rotation);
             Destroy(light, 0.35f);
@@ -46,13 +46,13 @@ public class ArrowScript : MonoBehaviour {
             GameObject light = Instantiate(ligghtningEffect, spawnPoint.position, spawnPoint.rotation);
             Destroy(light, 0.35f);
             Destroy(gameObject);
-            MedusaController.instance.moveSpeed = 0;
-            MedusaHealthBar.instance.slider.value -= 100f;
+            //MedusaController.instance.moveSpeed = 0;
+            //MedusaHealthBar.instance.slider.value -= 100f;
             Vector2 pushDirection = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             pushDirection.y = .75f;
             collision.GetComponent<Rigidbody2D>().AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
-            FindObjectOfType<MedusaController>().animator.SetBool("isHurt", true);
-            FindObjectOfType<MedusaController>().StartCoroutine(FindObjectOfType<MedusaController>().ExitStatus());
+            //FindObjectOfType<MedusaController>().animator.SetBool("isHurt", true);
+            //FindObjectOfType<MedusaController>().StartCoroutine(FindObjectOfType<MedusaController>().ExitStatus());
         } else if (collision.gameObject.CompareTag("Lizard")) {
             GameObject light = Instantiate(ligghtningEffect, spawnPoint.position, spawnPoint.rotation);
             Destroy(light, 0.35f);

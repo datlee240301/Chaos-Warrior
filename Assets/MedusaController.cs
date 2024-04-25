@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEditor.XR;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MedusaController : MonoBehaviour {
     public static MedusaController instance;
+    public Slider slider;
     private Vector3 startPos;
     private bool movingRight = true;
     private Transform playerTransform;
@@ -19,6 +21,8 @@ public class MedusaController : MonoBehaviour {
 
     private void Awake() {
         instance = this;
+        slider = GetComponent<Slider>();
+        slider.value = slider.maxValue;
     }
 
     void Start() {
@@ -32,11 +36,11 @@ public class MedusaController : MonoBehaviour {
     }
 
     private void Update() {
-        if(PlayerHealthBar.instance.slider.value <=0 ) {
+        if(slider.value <=0 ) {
             StopAllCoroutines();
             StartCoroutine(MoveRoutine2());
         }
-        if (MedusaHealthBar.instance.slider.value <= 0) {
+        if (slider.value <= 0) {
             animator.SetBool("isDie", true);
             Destroy(gameObject, 2f);
             moveSpeed = 0f;
@@ -172,6 +176,11 @@ public class MedusaController : MonoBehaviour {
             MedusaHealthBar.instance.slider.value -= 600f;
             animator.SetBool("isHurt", true);
             moveSpeed = 0;
+            StartCoroutine(ExitStatus());
+        }else if (collision.gameObject.CompareTag("Arrow")) {
+            slider.value -= 100;
+            moveSpeed = 0;
+            animator.SetBool("isHurt", true);
             StartCoroutine(ExitStatus());
         }
     }
