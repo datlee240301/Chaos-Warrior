@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LizardController : MonoBehaviour
 {
     public static LizardController instance;
+    public Slider slider;
     private Vector3 startPos;
     private bool movingRight = true;
     private Transform playerTransform;
@@ -16,6 +18,7 @@ public class LizardController : MonoBehaviour
 
     private void Awake() {
         instance = this;
+        slider = GetComponent<Slider>();
     }
 
     void Start() {
@@ -24,6 +27,7 @@ public class LizardController : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
         StartCoroutine(MoveRoutine());
+        slider.value = slider.maxValue;
     }
 
     private void Update() {
@@ -31,7 +35,7 @@ public class LizardController : MonoBehaviour
         //    StopAllCoroutines();
         //    StartCoroutine(MoveRoutine2());
         //}
-        if (LizardHealthbar.instance.slider.value <= 0) {
+        if (slider.value <= 0) {
             animator.SetBool("isDie", true);
             Destroy(gameObject, 2f);
             moveSpeed = 0f;
@@ -159,6 +163,11 @@ public class LizardController : MonoBehaviour
         } else if (collision.gameObject.CompareTag("Skill1Effect")) {
             LizardHealthbar.instance.slider.value -= 600f;
             animator.SetBool("isHurt", true);
+            moveSpeed = 0;
+            StartCoroutine(ExitStatus());
+        } else if (collision.gameObject.CompareTag("Arrow")) {
+            animator.SetBool("isHurt", true);
+            slider.value -= 100;
             moveSpeed = 0;
             StartCoroutine(ExitStatus());
         }

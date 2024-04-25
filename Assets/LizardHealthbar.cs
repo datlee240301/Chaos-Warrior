@@ -19,6 +19,10 @@ public class LizardHealthbar : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-
+        if (slider.value <= 0) {
+            LizardController.instance.animator.SetBool("isDie", true);
+            //LizardController.instance.Destroy(LizardController.instance.gameObject, 2f);
+            LizardController.instance.moveSpeed = 0f;
+        }
     }
 }

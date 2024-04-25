@@ -359,12 +359,21 @@ public class PlayerController : MonoBehaviour {
             PlayerPrefs.SetInt("Skill1", 1);
             Destroy(collision.gameObject);
             NoticeManager.instance.ShowSkill1NoticeText();
-        }
-        else if (collision.gameObject.CompareTag("HealthPoint")) {
+        } else if (collision.gameObject.CompareTag("HealthPoint")) {
             PlayerHealthBar.instance.slider.value += 100;
             Destroy(collision.gameObject);
+        } else if (collision.gameObject.CompareTag("Troll2DetectZone")) {
+            Troll2Controller.instance.StopAllCoroutines();
+            Troll2Controller.instance.StartCoroutine(Troll2Controller.instance.RunRoutine());
         }
         StartCoroutine(ExitStatus());
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("Troll2DetectZone")) {
+            Troll2Controller.instance.StopAllCoroutines();
+            Troll2Controller.instance.StartCoroutine(Troll2Controller.instance.MoveRoutine());
+        }
     }
 
     public IEnumerator ExitStatus() {
