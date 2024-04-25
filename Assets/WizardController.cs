@@ -48,7 +48,7 @@ public class WizardController : MonoBehaviour {
         }
     }
 
-    IEnumerator MoveRoutine() {
+    public IEnumerator MoveRoutine() {
         while (true) {
             if (movingRight) {
                 while (transform.position.x < startPos.x + 3f) {

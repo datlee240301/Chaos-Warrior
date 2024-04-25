@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Troll2Controller : MonoBehaviour {
     public static Troll2Controller instance;
-    public GameObject attackRange;
     public Slider slider;
     TouchingDirections directions;
     private Vector3 startPos;
@@ -20,6 +19,7 @@ public class Troll2Controller : MonoBehaviour {
     bool hasPlayedEarthquake = false;
     bool hasRun = false;
     bool hasMove = false;
+    private BoxCollider2D attackRangeCollider;
 
     private void Awake() {
         instance = this;
@@ -238,26 +238,26 @@ public class Troll2Controller : MonoBehaviour {
             animator.SetBool("isHurt", true);
             //StartCoroutine(ExitStatus());
         } else if (collision.gameObject.CompareTag("Arrow")) {
-            hitCount++;
             slider.value -= 100;
+            hitCount++;
             if (slider.value <= 1000) animator.SetBool("isHurt", true);
             if (hitCount == 1) {
                 StopAllCoroutines();
                 StartCoroutine(RunRoutine());
             }
-        } else if (collision.CompareTag("Troll2DetectZone") && gameObject.CompareTag("Player")) {
+        } else if (collision.gameObject.CompareTag("Player")) {
             StopAllCoroutines();
             StartCoroutine(RunRoutine());
+        } else {
+            StopAllCoroutines();
+            StartCoroutine(MoveRoutine  ());
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        BoxCollider2D attackRangeCollider = attackRange.GetComponent<BoxCollider2D>();
-        if (collision == attackRangeCollider) {
-            if (collision.gameObject.CompareTag("Player")) {
-                StopAllCoroutines();
-                StartCoroutine(MoveRoutine());
-            }
+        if (collision.gameObject.CompareTag("Player")) {
+            StopAllCoroutines();
+            StartCoroutine(MoveRoutine());
         }
     }
 }

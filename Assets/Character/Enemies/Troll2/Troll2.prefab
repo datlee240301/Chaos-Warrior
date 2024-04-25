@@ -412,6 +412,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21aa6de885d3e9045b5dca5738ecfc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: {fileID: 596092909108962394}
+  slider: {fileID: 0}
   animator: {fileID: 0}
   moveSpeed: 3
   waitTime: 2
@@ -541,9 +543,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 3000
   m_WholeNumbers: 0
-  m_Value: 1000
+  m_Value: 3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

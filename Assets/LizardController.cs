@@ -156,12 +156,12 @@ public class LizardController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("PlayerHitbox")) {
-            LizardHealthbar.instance.slider.value -= 200f;
+            instance.slider.value -= 200f;
             animator.SetBool("isHurt", true);
             moveSpeed = 0;
             StartCoroutine(ExitStatus());
         } else if (collision.gameObject.CompareTag("Skill1Effect")) {
-            LizardHealthbar.instance.slider.value -= 600f;
+            instance.slider.value -= 600f;
             animator.SetBool("isHurt", true);
             moveSpeed = 0;
             StartCoroutine(ExitStatus());

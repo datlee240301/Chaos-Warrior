@@ -91,7 +91,7 @@ public class Knight : MonoBehaviour {
         if (collision.gameObject.CompareTag("PlayerHitbox")) {
             animator.SetBool(AnimationStrings.isKnightHit, true);
             walkSpeed = 0;
-            KnightHealthBar.instance.slider.value -= 200f;
+            slider.value -= 200f;
             StartCoroutine(ExitStatus());
             Vector2 pushDirection = collision.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
@@ -105,7 +105,7 @@ public class Knight : MonoBehaviour {
         } else if (collision.gameObject.CompareTag("Skill1Effect")) {
             animator.SetBool(AnimationStrings.isKnightHit, true);
             walkSpeed = 0;
-            KnightHealthBar.instance.slider.value -= 500f;
+            slider.value -= 500f;
             StartCoroutine(ExitStatus());
             //EnenmyHealthBar.instance.slider.value -= EnenmyHealthBar.instance.slider.maxValue;
         }
